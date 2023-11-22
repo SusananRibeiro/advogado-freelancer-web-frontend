@@ -2,25 +2,77 @@
         <h1>Clientes</h1>
         <div>
           <button>Cadastrar Cliente</button>
-          <h2>Relatório</h2>
-          <h2>Todos</h2>
+          <h5>Relatório</h5>
+          <h5>Todos</h5>
         </div>
 
         <form #formulario="ngForm" (ngSubmit)="save(formulario)">
-          <input type="hidden" name="id" id="id" ngModel>
+          <label for="id">Código do Cliente: </label>  
+          <input type="text" name="id" id="disabledInput" ngModel>
           <div class="input-group">
             <label for="nome">Nome Completo: </label>
             <input type="text" name="nome" id="nome" ngModel required>
           </div>
           <div class="input-group">
-            <label for="valor">Valor: </label>
-            <input type="number" name="valor" id="valor" ngModel required>
+            <label for="cpfOuCnpj">CPF/CNPJ: </label>
+            <input type="text" name="cpfOuCnpj" id="cpfOuCnpj" ngModel required>
           </div>
-      
+          <div class="input-group">
+            <label for="dataNascimento">Data do Nascimento: </label>
+            <input type="date" name="dataNascimento" id="dataNascimento" ngModel required>
+          </div>
+          <div class="input-group">
+            <label for="rua">Rua: </label>
+            <input type="text" name="rua" id="rua" ngModel required>
+          </div>
+          <div class="input-group">
+            <label for="numero">Número: </label>
+            <input type="number" name="numero" id="numero" ngModel>
+          </div>
+          <div class="input-group">
+            <label for="bairro">Bairro: </label>
+            <input type="text" name="bairro" id="bairro" ngModel required>
+          </div>
+          <div class="input-group">
+            <label for="uf">UF: </label>
+            <input type="text" name="uf" id="uf" ngModel required>
+          </div>
+          <div class="input-group">
+            <label for="cep">CEP: </label>
+            <input type=" number" name="cep" id="cep" ngModel required>
+          </div>
+          <div class="input-group">
+            <label for="pais">País: </label>
+            <input type="text" name="pais" id="pais" ngModel required>
+          </div>
+          <div class="input-group">
+            <label for="telefone">Telefone: </label>
+            <input type="text" name="telefone" id="telefone" ngModel required> <!-- "required" para dizer que o campo é obrigatorio-->
+          </div>
+          <div class="input-group">
+            <label for="email">E-mail: </label>
+            <input type="text" name="email" id="email" ngModel> 
+          </div>
+        <div>
+            <label fro="">Status: </label>
+            <input type="radio" name="input-radio" id="Ativo"> <!-- "name" é para dizer que pertence ao mesmo grupo e não permitir que possa selecionar os dois, se tiver nomes diferentes, vai permitir selecionar mais de um, porque são de grupos diferentes -->
+            <input type="radio" name="input-radio" id="Inativo">
+
+            <label fro="meu-checkbox">Ativo</label>
+            <input type="checkbox" id="meu-checkbox" name="meu-checkbox">
+            <label fro="meu-checkbox">Inativo</label>
+            <input type="checkbox" id="meu-checkbox" name="meu-checkbox">
+        </div>  
+
+          <div class="input-group">
+            <label for="complemento">Complemento: </label>
+            <input type="text" name="complemento" id="complemento" ngModel>
+          </div>
           <div class="btn-group">
-            <input class="btn" type="reset" value="Limpar">
             <input class="btn btn-verde" type="submit" value="Salvar">
+            <input class="btn" type="reset" value="Limpar">
           </div>
+          
         </form>
       
         <table border="1" [width]="500">
