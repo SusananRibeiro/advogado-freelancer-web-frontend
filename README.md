@@ -1,27 +1,16 @@
-# AdvogadoFreelancerWebFront
+# Sistema Web Advogado freelancer
+Desenvolver e entregar uma plataforma web que permita ao advogado freelancer gerenciar agendamentos, audiências e reuniões, associando-os a processos e clientes de forma organizada.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+### Tecnologias:
+Para atingir os objetivos propostos, o sistema será desenvolvido da seguinte forma:
+* Banco de dados: Utilizaremos o PostgreSQL para armazenar as informações relacionadas aos agendamentos, processos e clientes, garantindo a segurança e a integridade dos dados.
+* Backend: A lógica de negócios será implementada em Java, proporcionando uma base sólida e escalável para o sistema.
+* Serviço web: O serviço web será desenvolvido com o framework Spring Boot e Angular, para criar uma interface amigável e eficiente que permitirá ao advogado realizar a gestão dos agendamentos, processos e clientes de forma prática e acessível pela web. 
 
-## Development server
+Dessa forma, o sistema atenderá às necessidades do advogado freelancer, proporcionando um gerenciamento mais eficaz e organizado de suas atividades profissionais.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Obs:
+Para testar a aplicação clone este repositório na sua
+máquina. No terminal digite o comando abaixo:
+* git clone   -link do repositório-
