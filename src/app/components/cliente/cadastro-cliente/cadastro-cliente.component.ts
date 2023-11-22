@@ -1,15 +1,15 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ClienteService } from '../../services/cliente.service';
-import { Cliente } from '../../models/Cliente';
+import { Cliente } from 'src/app/models/Cliente';
+import { CadastroClienteService } from 'src/app/services/cadastro-cliente.service';
 
 @Component({
-  selector: 'app-cliente',
-  templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.scss']
+  selector: 'app-cadastro-cliente',
+  templateUrl: './cadastro-cliente.component.html',
+  styleUrls: ['./cadastro-cliente.component.scss']
 })
-export class ClienteComponent {
-  private service: ClienteService = inject(ClienteService);
+export class CadastroClienteComponent {
+  private service: CadastroClienteService = inject(CadastroClienteService);
   
   public clientes: Cliente[] = [];
 
