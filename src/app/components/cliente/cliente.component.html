@@ -1,7 +1,7 @@
 <body>
         <h1>Clientes</h1>
         <div class="centro">
-          <button>Cadastrar Cliente</button>
+          <button class="btnAzul">Cadastrar Cliente</button>
           <h5>Relatório</h5>
           <h5>Todos</h5>
         </div>     
@@ -29,9 +29,9 @@
                   <td>{{cliente.email}}</td>
                   <td>{{cliente.complemento}}</td>
                   <td>{{cliente.status}}</td>
-                  <td>
-                      <button class="btn" (click)="setEditar(cliente)">Editar</button>
-                      <button class="btn btn-vermelho" (click)="delete(cliente.id)">Excluir</button>
+                  <td>                      
+                      <button class="btnAzul" (click)="setEditar(cliente)"><img src="./assets/imagens/editar-icons.png" alt="Instagram"/></button>
+                      <button class="btnAzul" (click)="delete(cliente.id)">Excluir</button>
                   </td>
               </tr>
           </tbody>
