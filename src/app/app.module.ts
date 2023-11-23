@@ -20,8 +20,7 @@ import { CadastroClienteComponent } from './components/cliente/cadastro-cliente/
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    HttpClientModule
-    
+    HttpClientModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

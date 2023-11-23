@@ -4,7 +4,7 @@ export interface Cliente {
     cpfOuCnpj: string,
     dataNascimento: Date,
     rua: string,
-    numero: number,
+    numero: string,
     bairro: string,
     uf: string,
     cep: number,
@@ -12,6 +12,6 @@ export interface Cliente {
     telefone: string,
     email: string,
     complemento: string,
-    status: boolean
+    status: string
 
 }

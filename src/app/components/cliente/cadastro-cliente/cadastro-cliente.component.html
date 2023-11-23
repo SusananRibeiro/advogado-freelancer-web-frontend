@@ -37,11 +37,11 @@
         <input type="text" name="complemento" id="complemento" ngModel>
       </div>
       <div class="input-group">
-          <label fro="">Status*</label>
-          <input type="radio" name="input-radio" id="Ativo">
-          <p>Ativo</p> <!-- "name" é para dizer que pertence ao mesmo grupo e não permitir que possa selecionar os dois, se tiver nomes diferentes, vai permitir selecionar mais de um, porque são de grupos diferentes -->
-          <input type="radio" name="input-radio" id="Inativo">
-          <p>Inativo</p>
+        <label for="status">Status*</label>
+        <select name="status" id="status" ngModel required>
+          <option value="ativo">Ativo</option>
+          <option value="inativo">Inativo</option>
+        </select>
       </div>  
         
         <div>

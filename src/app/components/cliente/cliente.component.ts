@@ -9,8 +9,8 @@ import { Cliente } from '../../models/Cliente';
   styleUrls: ['./cliente.component.scss']
 })
 export class ClienteComponent {
-  private service: ClienteService = inject(ClienteService);
 
+  private service: ClienteService = inject(ClienteService);
   public clientes: Cliente[] = [];
 
   @ViewChild("formulario") formulario: NgForm | undefined;
@@ -71,5 +71,7 @@ export class ClienteComponent {
       }
     )
   }
+
+
 
 }
