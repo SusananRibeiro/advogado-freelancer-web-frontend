@@ -32,7 +32,6 @@ export class ClienteService {
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(`${enviroment.URL_API}/clientes/delete/${id}`);
   }
-  
 
 }
 

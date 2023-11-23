@@ -1,20 +1,18 @@
 <body>
   <h1>Cadastro Clientes</h1>
     <form #formulario="ngForm" (ngSubmit)="save(formulario)">
-        <div class="input-group">
-          <label for="id">Código do Cliente </label>  
-          <input type="text" name="id" id="disabledInput" ngModel>
-          
-            <label for="nome">Nome Completo* </label>
-            <input type="text" name="nome" id="nome" ngModel required>
-         
-            <label for="cpfOuCnpj">CPF/CNPJ* </label>
-            <input type="text" name="cpfOuCnpj" id="cpfOuCnpj" ngModel required>
-        </div>
+      <div class="input-group">
+        <label for="id">Código do Cliente </label>  
+        <input type="text" name="id" id="disabledInput" ngModel>
+        <label for="nome">Nome Completo* </label>
+        <input type="text" name="nome" id="nome" ngModel required>
+        <label for="cpfOuCnpj">CPF/CNPJ* </label>
+        <input type="text" name="cpfOuCnpj" id="cpfOuCnpj" ngModel required>
+      </div>
 
       <div class="input-group">
         <label for="dataNascimento">Data do Nascimento* </label>
-        <input type="date" name="dataNascimento" id="dataNascimento" ngModel required>
+        <input type="text" name="dataNascimento" id="dataNascimento" ngModel required>
         <label for="rua">Rua* </label>
         <input type="text" name="rua" id="rua" ngModel required>
         <label for="numero">Número </label>
@@ -47,8 +45,8 @@
       </div>  
         
         <div>
-          <input class="btn btn-verde" type="submit" value="Salvar">
-          <input class="btn" type="reset" value="Limpar">
+          <input class="btnAzul" type="submit" value="Salvar">
+          <input class="btnAzul" type="reset" value="Limpar">
         </div>   
       </form>
 </body>
