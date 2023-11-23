@@ -10,7 +10,7 @@ import { Cliente } from '../../models/Cliente';
 })
 export class ClienteComponent {
   private service: ClienteService = inject(ClienteService);
-  
+
   public clientes: Cliente[] = [];
 
   @ViewChild("formulario") formulario: NgForm | undefined;
@@ -30,23 +30,23 @@ export class ClienteComponent {
     )
   }
 
-    public save(formulario: NgForm) {
-      
-      if(!formulario.valid) {
-        alert("Dados inválidos")
-        return;
-      }
-      this.service.save(formulario.value, formulario.value.id).subscribe(
-        (response: any) => {
-          alert("Cliente salvo com sucesso.")
-          formulario.reset();
-          this.get();
-        },
-        (error: any) => {
-          alert("Erro ao salvar cliente. " + error)
-        }
-      )
+  public save(formulario: NgForm) {
+    
+    if(!formulario.valid) {
+      alert("Dados inválidos")
+      return;
     }
+    this.service.save(formulario.value, formulario.value.id).subscribe(
+      (response: any) => {
+        alert("Cliente salvo com sucesso.")
+        formulario.reset();
+        this.get();
+      },
+      (error: any) => {
+        alert("Erro ao salvar cliente. " + error)
+      }
+    )
+  }
 
   public setEditar(cliente: Cliente) {
     // this.formulario?.setValue(produto); -> Foi mudado essa parte
