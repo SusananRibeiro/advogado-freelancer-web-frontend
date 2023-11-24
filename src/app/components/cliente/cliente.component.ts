@@ -1,7 +1,9 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ClienteService } from '../../services/cliente.service';
 import { Cliente } from '../../models/Cliente';
+import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
+
 
 @Component({
   selector: 'app-cliente',
@@ -19,19 +21,20 @@ export class ClienteComponent {
     this.get();
   }
 
+  // Consulta
   public get() {
     this.service.get().subscribe(
       (response: any) => {
         this.clientes = response;
       },
       (error: any) => {
-        alert("Erro ao buscar clientes!")
+        //alert("Erro ao buscar clientes!")
       }
     )
   }
 
-  public save(formulario: NgForm) {
-    
+  // POST
+  public save(formulario: NgForm) {    
     if(!formulario.valid) {
       alert("Dados inválidos")
       return;
@@ -41,6 +44,7 @@ export class ClienteComponent {
         alert("Cliente salvo com sucesso.")
         formulario.reset();
         this.get();
+        this.closeModal();
       },
       (error: any) => {
         alert("Erro ao salvar cliente. " + error)
@@ -48,11 +52,13 @@ export class ClienteComponent {
     )
   }
 
+  // PUT
   public setEditar(cliente: Cliente) {
-    // this.formulario?.setValue(produto); -> Foi mudado essa parte
+    //this.formulario?.setValue(cliente); -> Foi mudado essa parte
     this.service.find(cliente.id).subscribe(
       (response: Cliente) => {
-        this.formulario?.setValue(response);
+        this.openModal()  
+        this.formulario?.setValue(response);             
       },
       (error: any) => {
         alert("Erro ao buscar cliente!");
@@ -60,18 +66,41 @@ export class ClienteComponent {
     );    
   }  
 
+  // // DELETE
   public delete(id: number) {
-    this.service.delete(id).subscribe(
-      (response: any) => {
-        alert("Cliente excluido com sucesso");
-        this.get();
-      },
-      (error: any) => {
-        alert("Erro ao excluir o cliente. " + error);
-      }
-    )
+    const confirmDelete = confirm('Tem certeza que deseja excluir este cliente?');
+  
+    if (confirmDelete) {
+      this.service.delete(id).subscribe(
+        (response: any) => {
+          alert('Cliente excluído com sucesso');
+          this.get();
+        },
+        (error: any) => {
+          alert('Erro ao excluir o cliente. ' + error);
+        }
+      );
+    }
   }
 
+  openModal() {
+    const modelDiv = document.getElementById('myModal');
+    if(modelDiv != null) {
+       modelDiv.style.display = 'block'; 
+    }
+  }
+
+  closeModal() {
+    const modelDiv = document.getElementById('myModal');
+    if(modelDiv != null) {
+       modelDiv.style.display = 'none'; 
+    }
+  }
+
+  // abrirModalAtualizacao() {
+  //   const clienteO = this.formulario?.setValue(clientes); 
+  //   this.service.find(clienteO); // Definir o cliente a ser atualizado 
+  // } 
 
 
 }

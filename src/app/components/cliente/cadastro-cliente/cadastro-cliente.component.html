@@ -1,9 +1,8 @@
 <body>
-  <h1>Cadastro Clientes</h1>
     <form #formulario="ngForm" (ngSubmit)="save(formulario)">
       <div class="input-group">
         <label for="id">Código do Cliente</label>  
-        <input type="text" name="id" id="disabledInput" ngModel>
+        <input type="text" name="id" id="id" ngModel>
         <label for="nomeCompleto">Nome Completo*</label>
         <input type="text" name="nomeCompleto" id="nomeCompleto" ngModel required>
         <label for="cpfOuCnpj">CPF/CNPJ*</label>
