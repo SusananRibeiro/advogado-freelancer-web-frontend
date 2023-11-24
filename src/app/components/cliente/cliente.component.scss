@@ -3,7 +3,18 @@ body {
 }
 
 table {
-    background-color: aqua;
+    width: 100%;
+}
+
+th {    
+    background-color: #111061;
+    color: #ffff;
+    text-align: center;
+}
+
+td {
+    background-color: #D9D9D9;
+    text-align: center;
 }
 
 .centro {
@@ -12,6 +23,26 @@ table {
 }
 
 .btnAzul {
+    width: 200px;
+    height: 40px;
     background-color: #111061;
+    border-style: none;
+    border-radius: 5px;
     color: #ffff;
 }
+
+#editar {
+    width: 40px;
+    height: 20px;
+    font-size: 8px;
+    background-color: #111061;
+    border-style: none;
+    border-radius: 5px;
+    color: #ffff;    
+}
+
+.custom-width {
+    max-width: 1000px; /* Definindo uma largura máxima de 600 pixels */
+    width: 90%; /* Definindo uma largura de 90% */
+
+  }

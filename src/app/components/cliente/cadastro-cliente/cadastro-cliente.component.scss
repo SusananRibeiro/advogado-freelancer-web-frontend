@@ -3,12 +3,16 @@ body {
 }
 
 input {
-    border: 0.5;
+    border-style: none;
     border-radius: 4px;
     height: 25px;
 }
 
 .btnAzul {
+    width: 200px;
+    height: 40px;
     background-color: #111061;
+    border-style: none;
+    border-radius: 5px;
     color: #ffff;
 }

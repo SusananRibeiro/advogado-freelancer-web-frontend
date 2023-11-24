@@ -2,6 +2,7 @@ import { Component, inject, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Cliente } from 'src/app/models/Cliente';
 import { CadastroClienteService } from 'src/app/services/cadastro-cliente.service';
+import { ClienteComponent } from '../cliente.component';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -9,9 +10,10 @@ import { CadastroClienteService } from 'src/app/services/cadastro-cliente.servic
   styleUrls: ['./cadastro-cliente.component.scss']
 })
 export class CadastroClienteComponent {
-  private service: CadastroClienteService = inject(CadastroClienteService);
-  
+
+  private service: CadastroClienteService = inject(CadastroClienteService);  
   public clientes: Cliente[] = [];
+  private modal: ClienteComponent = inject(ClienteComponent);
 
   @ViewChild("formulario") formulario: NgForm | undefined;
 
@@ -31,16 +33,16 @@ export class CadastroClienteComponent {
   }
 
   public save(formulario: NgForm) {
-
     if(!formulario.valid) {
       alert("Dados inválidos")
       return;
     }
     this.service.save(formulario.value, formulario.value.id).subscribe(
-      (response: any) => {
-        alert("Cliente salvo com sucesso.")
+      (response: any) => {        
         formulario.reset();
         this.get();
+        this.modal.closeModal();
+        alert("Cliente salvo com sucesso.")
       },
       (error: any) => {
         alert("Erro ao salvar cliente. " + error)
@@ -52,7 +54,9 @@ export class CadastroClienteComponent {
     // this.formulario?.setValue(produto); -> Foi mudado essa parte
     this.service.find(cliente.id).subscribe(
       (response: Cliente) => {
+        this.modal.openModal();
         this.formulario?.setValue(response);
+        
       },
       (error: any) => {
         alert("Erro ao buscar cliente!");
