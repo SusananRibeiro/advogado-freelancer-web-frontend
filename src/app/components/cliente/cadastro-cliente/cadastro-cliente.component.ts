@@ -38,6 +38,7 @@ export class CadastroClienteComponent {
       return;
     }
     this.service.save(formulario.value, formulario.value.id).subscribe(
+   
       (response: any) => {        
         formulario.reset();
         this.get();
@@ -64,16 +65,6 @@ export class CadastroClienteComponent {
     );    
   }  
 
-  public delete(id: number) {
-    this.service.delete(id).subscribe(
-      (response: any) => {
-        alert("Cliente excluido com sucesso");
-        this.get();
-      },
-      (error: any) => {
-        alert("Erro ao excluir o cliente. " + error);
-      }
-    )
-  }
+  // Não precisa do Método DELETE
 
 }

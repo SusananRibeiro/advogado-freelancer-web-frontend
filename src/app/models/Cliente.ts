@@ -6,6 +6,7 @@ export interface Cliente {
     rua: string,
     numero: string,
     bairro: string,
+    cidade: string,
     uf: string,
     cep: number,
     pais: string,
