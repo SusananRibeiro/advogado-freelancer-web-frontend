@@ -23,7 +23,8 @@ export class ClienteService {
     }
     return this.http.post<Cliente>(`${enviroment.URL_API}/clientes/crie`, cliente);
   }
-
+  
+  // Método GET por ID (READ) 
   public find(id: number): Observable<Cliente> {
     return this.http.get<Cliente>(`${enviroment.URL_API}/clientes/carregue/${id}`);
   }

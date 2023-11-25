@@ -1,10 +1,17 @@
 <body>
   <h1>Clientes</h1>
-  <div class="centro">
+  <div class="input-group">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" (click)="openModal()">Cadastrar Cliente</button>   
-    <h5>Relatório</h5>
-    <h5>Todos</h5>
+  <button type="button" class="btn btn-primary" (click)="openModal()">Cadastrar Cliente</button> 
+    <label for="relatorio">Relatório</label>
+    <select name="relatorio" id="relatorio" ngModel>
+      <option value="todos">Todos</option>
+      <option value="cliente">Cliente</option>
+    </select>
+      <input type="checkbox" id="chkAtivo" nome="chkAtivo" checked>
+      <label for="scales">Ativo</label>  
+      <input type="checkbox" id="chkInativo" nome="chkInativo">
+      <label for="chkInativo">Inativo</label><br> 
   </div>   
            
   <table>
@@ -26,7 +33,7 @@
         <td>{{cliente.id}}</td>
         <td>{{cliente.nomeCompleto}}</td>
         <td>{{cliente.cpfOuCnpj}}</td>
-        <td>{{cliente.rua}}</td>
+        <td>{{cliente.rua}}, {{cliente.numero}}, {{cliente.bairro}}, {{cliente.cidade}}, {{cliente.uf}}, {{cliente.pais}}</td>
         <td>{{cliente.telefone}}</td>
         <td>{{cliente.email}}</td>
         <td>{{cliente.complemento}}</td>
@@ -41,7 +48,7 @@
 
   <!-- MODAL -->
   <div class="modal" id="myModal">
-    <div class="modal-dialog custom-width" style="height: 70%;">
+    <div class="modal-dialog custom-width" style="height: 100%;">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Cadastrar Cliente</h5>
