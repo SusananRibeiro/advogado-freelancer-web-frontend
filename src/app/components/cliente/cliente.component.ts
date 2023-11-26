@@ -2,7 +2,6 @@ import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ClienteService } from '../../services/cliente.service';
 import { Cliente } from '../../models/Cliente';
-import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
 
 
 @Component({
@@ -102,4 +101,6 @@ export class ClienteComponent {
   //   this.service.find(clienteO); // Definir o cliente a ser atualizado 
   // } 
 
+
+  
 }

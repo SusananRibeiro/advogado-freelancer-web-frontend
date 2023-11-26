@@ -2,6 +2,35 @@ body {
     background-color: #EEEAEA;
 }
 
+h1 {
+    margin: 10px;
+    padding: 10px;
+    background-color: aqua;
+}
+
+.btnRelatorio {
+    margin: 10px;
+    padding: 30px;
+    display: flex; /*mudar a disposição dos elementos em só uma linha */
+    flex-direction: row;
+    flex-wrap: wrap-reverse; /*esse vai fazer a responsividade do site*/
+}
+
+.btnCadastro {
+    background-color: red;
+    margin-left: 10px;
+}
+
+.relatorio {
+    background-color: blue;
+    margin-left: 15px;
+}
+
+.ativoInativo {
+    background-color: purple;
+    margin-left: 600px;
+}
+
 table {
     width: 100%;
 }
@@ -17,19 +46,14 @@ td {
     text-align: center;
 }
 
-.centro {
-    display: block;
-
-}
-
-.btnAzul {
-    width: 200px;
-    height: 40px;
-    background-color: #111061;
-    border-style: none;
-    border-radius: 5px;
-    color: #ffff;
-}
+// .btnAzul {
+//     width: 200px;
+//     height: 40px;
+//     background-color: #111061;
+//     border-style: none;
+//     border-radius: 5px;
+//     color: #ffff;
+// }
 
 #editar {
     width: 40px;
@@ -44,5 +68,4 @@ td {
 .custom-width {
     max-width: 1000px; /* Definindo uma largura máxima de 600 pixels */
     width: 90%; /* Definindo uma largura de 90% */
-
-  }
+}
