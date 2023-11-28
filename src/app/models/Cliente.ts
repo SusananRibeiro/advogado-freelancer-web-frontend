@@ -13,6 +13,11 @@ export interface Cliente {
     telefone: string,
     email: string,
     complemento: string,
-    status: string
+    status: string,
+    // Para a paginação
+    totalPages: number,
+    totalElements: number,
+    pageNumber: number,
+    size: number
 
 }

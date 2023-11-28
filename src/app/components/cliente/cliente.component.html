@@ -53,6 +53,16 @@
     </tbody>
   </table>  
 
+  <!-- <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav> -->
+
   <!-------------------------------- MODAL ------------------------------------------------------------------------------------>
   <div class="modal" id="myModal">
     <div class="modal-dialog custom-width" style="height: 100%;">
@@ -64,7 +74,7 @@
         <div class="modal-body">
           <form #formulario="ngForm" (ngSubmit)="save(formulario)">
             <div class="input-group">
-              <label for="id">Código do Cliente</label>  
+              <label for="id">Código do Cliente</label> 
               <input type="text" name="id" id="id" ngModel>
               <label for="nomeCompleto">Nome Completo*</label>
               <input type="text" name="nomeCompleto" id="nomeCompleto" ngModel required>
@@ -73,7 +83,7 @@
             </div>
             <div class="input-group">
               <label for="dataNascimento">Data do Nascimento*</label>
-              <input type="text" name="dataNascimento" id="dataNascimento" ngModel required>
+              <input type="date" name="dataNascimento" id="dataNascimento" ngModel required>
               <label for="rua">Rua*</label>
               <input type="text" name="rua" id="rua" ngModel required>
               <label for="numero">Número</label>
@@ -100,11 +110,13 @@
               <input type="text" name="complemento" id="complemento" ngModel>
             </div>
             <div>
-              <label fro="">Status*</label><br>
+              <label>Status*</label>
+              <input type="checkbox" name="status" ngModel>
+              <!-- <label fro="status">Status*</label><br>
               <input type="radio" name="status-radio" value="ativo" ngModel>
               <label for="rdoAtivo">Ativo</label><br> 
               <input type="radio" name="status-radio" value="inativo" ngModel>
-              <label for="rdoInativo">Inativo</label><br> 
+              <label for="rdoInativo">Inativo</label><br>  -->
             </div>
             <div>
               <input class="btnAzul" type="submit" value="Salvar">
