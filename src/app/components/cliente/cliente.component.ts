@@ -2,6 +2,7 @@ import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ClienteService } from '../../services/cliente.service';
 import { Cliente } from '../../models/Cliente';
+import { ClienteRows } from 'src/app/models/ClienteRows';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class ClienteComponent {
 
   private service: ClienteService = inject(ClienteService);
   public clientes: Cliente[] = [];
+ // public clientes: ClienteRows[] = [];
 
   @ViewChild("formulario") formulario: NgForm | undefined;
 
@@ -20,7 +22,6 @@ export class ClienteComponent {
     this.get();
   }
 
-  // Consulta
   public get() {
     this.service.get().subscribe(
       (response: any) => {
@@ -32,12 +33,22 @@ export class ClienteComponent {
     )
   }
 
+  // Consulta
+  // public get(pageNumber: number = 0, pageSize: number = 10) {
+  //   this.service.get(pageNumber, pageSize).subscribe(
+  //     (response: ClienteRows) => {
+  //       this.clientes = response;
+  //     },
+  //     (error: any) => {
+  //       alert("Erro ao buscar clientes!")
+  //     }
+  //   )
+  // }
+
+
   // POST
   public save(formulario: NgForm) {    
-    if(!formulario.valid) {
-      alert("Dados inválidos")
-      return;
-    }
+
     this.service.save(formulario.value, formulario.value.id).subscribe(
       (response: any) => {
         alert("Cliente salvo com sucesso.")
@@ -46,7 +57,7 @@ export class ClienteComponent {
         this.closeModal();
       },
       (error: any) => {
-        alert("Erro ao salvar cliente. " + error)
+        alert("Erro ao salvar cliente. " + JSON.stringify(error))
       }
     )
   }
@@ -55,9 +66,11 @@ export class ClienteComponent {
   public setEditar(cliente: Cliente) {
     //this.formulario?.setValue(cliente); -> Foi mudado essa parte
     this.service.find(cliente.id).subscribe(
-      (response: Cliente) => {
-        this.openModal()  
-        this.formulario?.setValue(response);             
+      (response: Cliente) => { 
+        this.openModal()
+        console.log(this.formulario);
+        this.formulario?.setValue(response);  
+                    
       },
       (error: any) => {
         alert("Erro ao buscar cliente!");
@@ -82,6 +95,7 @@ export class ClienteComponent {
     }
   }
 
+  // Chamar o MODAL
   openModal() {
     const modelDiv = document.getElementById('myModal');
     if(modelDiv != null) {
@@ -95,12 +109,6 @@ export class ClienteComponent {
        modelDiv.style.display = 'none'; 
     }
   }
-
-  // abrirModalAtualizacao() {
-  //   const clienteO = this.formulario?.setValue(clientes); 
-  //   this.service.find(clienteO); // Definir o cliente a ser atualizado 
-  // } 
-
 
   
 }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from 'src/app/models/Cliente';
 import { enviroment } from 'src/env/env.dev';
+import { ClienteRows } from '../models/ClienteRows';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,15 @@ export class ClienteService {
 
   private http: HttpClient = inject(HttpClient);
 
-  // Método GET (READ)
-  public get():Observable<Cliente[]> {
-    return this.http.get<Cliente[]>(`${enviroment.URL_API}/clientes/carregue`); 
-  }
+    // Método GET (READ)
+    public get():Observable<Cliente[]> {
+      return this.http.get<Cliente[]>(`${enviroment.URL_API}/clientes/carregue/pag`); // paginação 
+    }
+
+  // // Método GET (READ)
+  // public get(pageNumber: number, pageSize: number):Observable<ClienteRows> {
+  //   return this.http.get<ClienteRows>(`${enviroment.URL_API}/clientes/carregue/pag/${pageNumber}?${pageSize}`); // paginação 
+  // }
 
   // Método POST (CREATE)
   public save(cliente: Cliente, id: number = 0): Observable<Cliente> {
@@ -33,6 +39,7 @@ export class ClienteService {
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(`${enviroment.URL_API}/clientes/delete/${id}`);
   }
+
 
 }
 
