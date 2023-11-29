@@ -20,48 +20,42 @@
       <label for="chkInativo">Inativo</label><br> 
     </div>
   </div>   
-           
-  <table>
-    <thead>
-      <tr>
-        <th>Código</th>
-        <th>Cliente</th>
-        <th>CPF/CNPJ</th>
-        <th>Endereço</th>
-        <th>Telefone</th>
-        <th>E-mail</th>
-        <th>Complemento</th>
-        <th>Status</th>                  
-        <th>#</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cliente of clientes">
-        <td>{{cliente.id}}</td>
-        <td>{{cliente.nomeCompleto}}</td>
-        <td>{{cliente.cpfOuCnpj}}</td>
-        <td>{{cliente.rua}}, {{cliente.numero}}, {{cliente.bairro}}, {{cliente.cidade}}, {{cliente.uf}}, {{cliente.pais}}</td>
-        <td>{{cliente.telefone}}</td>
-        <td>{{cliente.email}}</td>
-        <td>{{cliente.complemento}}</td>
-        <td>{{cliente.status}}</td>
-        <td>                      
-          <button id="editar" (click)="setEditar(cliente)"><img src="src\assets\imagens\editar-icons.png"></button>
-          <button id="editar" (click)="delete(cliente.id)">Excluir</button>
-      </td>
-      </tr>
-    </tbody>
-  </table>  
 
-  <!-- <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
-  </nav> -->
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Cliente</th>
+          <th>CPF/CNPJ</th>
+          <th>Endereço</th>
+          <th>Telefone</th>
+          <th>E-mail</th>
+          <th>Complemento</th>
+          <th>Status</th>                  
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+      <!-- <tr *ngFor="let cliente of clientesRows?.rows"> -->
+      <tr *ngFor="let cliente of clientes"> 
+          <td>{{cliente.id}}</td>
+          <td>{{cliente.nomeCompleto}}</td>
+          <td>{{cliente.cpfOuCnpj}}</td>
+          <td>{{cliente.rua}}, {{cliente.numero}}, {{cliente.bairro}}, {{cliente.cidade}}, {{cliente.uf}}, {{cliente.pais}}</td>
+          <td>{{cliente.telefone}}</td>
+          <td>{{cliente.email}}</td>
+          <td>{{cliente.complemento}}</td>
+          <td>{{cliente.status}}</td>
+          <td>                      
+            <button id="editar" (click)="setEditar(cliente)"><img src="src\assets\imagens\editar-icons.png"></button>
+            <button id="editar" (click)="delete(cliente.id)">Excluir</button>
+        </td>
+        </tr>
+      </tbody>
+    </table>  
+
+
+ 
 
   <!-------------------------------- MODAL ------------------------------------------------------------------------------------>
   <div class="modal" id="myModal">
@@ -111,12 +105,7 @@
             </div>
             <div>
               <label>Status*</label>
-              <input type="checkbox" name="status" ngModel>
-              <!-- <label fro="status">Status*</label><br>
-              <input type="radio" name="status-radio" value="ativo" ngModel>
-              <label for="rdoAtivo">Ativo</label><br> 
-              <input type="radio" name="status-radio" value="inativo" ngModel>
-              <label for="rdoInativo">Inativo</label><br>  -->
+              <input type="checkbox" name="status" [(ngModel)]="status">
             </div>
             <div>
               <input class="btnAzul" type="submit" value="Salvar">

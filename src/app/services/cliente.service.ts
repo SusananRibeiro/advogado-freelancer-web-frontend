@@ -13,14 +13,14 @@ export class ClienteService {
   private http: HttpClient = inject(HttpClient);
 
     // Método GET (READ)
-    public get():Observable<Cliente[]> {
-      return this.http.get<Cliente[]>(`${enviroment.URL_API}/clientes/carregue/pag`); // paginação 
+    public getP():Observable<Cliente[]> {
+      return this.http.get<Cliente[]>(`${enviroment.URL_API}/clientes/carregue`); 
     }
 
-  // // Método GET (READ)
-  // public get(pageNumber: number, pageSize: number):Observable<ClienteRows> {
-  //   return this.http.get<ClienteRows>(`${enviroment.URL_API}/clientes/carregue/pag/${pageNumber}?${pageSize}`); // paginação 
-  // }
+  // Método GET (READ)
+  public get(pageNumber: number, pageSize: number):Observable<ClienteRows> {
+    return this.http.get<ClienteRows>(`${enviroment.URL_API}/clientes/carregue/page?page=${pageNumber}&size=${pageSize}`); // paginação 
+  }
 
   // Método POST (CREATE)
   public save(cliente: Cliente, id: number = 0): Observable<Cliente> {

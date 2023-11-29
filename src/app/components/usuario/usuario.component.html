@@ -1,1 +1,47 @@
-<p>usuario works!</p>
+<body>
+    <form #formulario="ngForm" (ngSubmit)="save(formulario)">
+        <div>
+            <label for="email">E-mail*</label>
+            <input type="text" name="email" id="email" ngModel><br> 
+            <label for="senha">Senha*</label>
+            <input type="text" name="senha" id="senha" ngModel>
+        </div>
+        <div>
+            <input class="btnAzul" type="submit" value="Login">
+            <input class="btnAzul" type="reset" value="Limpar">
+        </div>   
+    </form>
+    <p>Já tem cadastro?  <a routerLink="/" (click)="openModal()">Cadastra-se</a></p>
+   
+
+  <!-------------------------------- MODAL ------------------------------------------------------------------------------------>
+  <div class="modal" id="myModal">
+    <div class="modal-dialog custom-width" style="height: 100%;">
+      <div class="modal-content" style="background-color: #EEEAEA;">
+        <div class="modal-header">
+          <h5 class="modal-title">Cadastrar usuário</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()">X</button>
+        </div>
+        <div class="modal-body">
+          <form #formulario="ngForm" (ngSubmit)="save(formulario)">
+            <div>
+              <label for="nomeCompleto">Nome Completo*</label>
+              <input type="text" name="nomeCompleto" id="nomeCompleto" ngModel>
+              <br>
+              <label for="email">E-mail*</label>
+              <input type="text" name="email" id="email" ngModel> 
+              <br>
+              <label for="senha">Senha*</label>
+              <input type="text" name="senha" id="senha" ngModel>
+            </div>
+            <div>
+              <input class="btnAzul" type="submit" value="Salvar">
+              <input class="btnAzul" type="reset" value="Limpar">
+            </div>   
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-------------------------------- FIM do MODAL -------------------------------------------------------------------------------->
+   </body>
