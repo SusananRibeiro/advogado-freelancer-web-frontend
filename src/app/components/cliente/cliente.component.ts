@@ -11,19 +11,35 @@ import { ClienteRows } from 'src/app/models/ClienteRows';
   styleUrls: ['./cliente.component.scss']
 })
 export class ClienteComponent {
-
+  
+  public status: boolean = true; // Valor padrão como true para o checkbox
   private service: ClienteService = inject(ClienteService);
   public clientes: Cliente[] = [];
- // public clientes: ClienteRows[] = [];
+ // public  clientesRows!: ClienteRows;
 
   @ViewChild("formulario") formulario: NgForm | undefined;
 
   ngOnInit(): void {
-    this.get();
+   // this.get();
+    this.getP();
   }
 
-  public get() {
-    this.service.get().subscribe(
+  // //Consulta com paginação
+  // public get(pageNumber: number = 0, pageSize: number = 10) {
+  //   this.service.get(pageNumber, pageSize).subscribe(
+  //     (response: ClienteRows) => {
+  //       this.clientesRows = response;
+  //     },
+  //     (error: any) => {
+  //       alert("Erro ao buscar clientes!")
+  //     }
+  //   )
+  // }
+
+
+
+  public getP() {
+    this.service.getP().subscribe(
       (response: any) => {
         this.clientes = response;
       },
@@ -33,18 +49,6 @@ export class ClienteComponent {
     )
   }
 
-  // Consulta
-  // public get(pageNumber: number = 0, pageSize: number = 10) {
-  //   this.service.get(pageNumber, pageSize).subscribe(
-  //     (response: ClienteRows) => {
-  //       this.clientes = response;
-  //     },
-  //     (error: any) => {
-  //       alert("Erro ao buscar clientes!")
-  //     }
-  //   )
-  // }
-
 
   // POST
   public save(formulario: NgForm) {    
@@ -53,7 +57,7 @@ export class ClienteComponent {
       (response: any) => {
         alert("Cliente salvo com sucesso.")
         formulario.reset();
-        this.get();
+        this.getP();
         this.closeModal();
       },
       (error: any) => {
@@ -64,11 +68,9 @@ export class ClienteComponent {
 
   // PUT
   public setEditar(cliente: Cliente) {
-    //this.formulario?.setValue(cliente); -> Foi mudado essa parte
     this.service.find(cliente.id).subscribe(
       (response: Cliente) => { 
         this.openModal()
-        console.log(this.formulario);
         this.formulario?.setValue(response);  
                     
       },
@@ -86,7 +88,7 @@ export class ClienteComponent {
       this.service.delete(id).subscribe(
         (response: any) => {
           alert('Cliente excluído com sucesso');
-          this.get();
+          this.getP();
         },
         (error: any) => {
           alert('Erro ao excluir o cliente. ' + error);
@@ -109,6 +111,7 @@ export class ClienteComponent {
        modelDiv.style.display = 'none'; 
     }
   }
+
 
   
 }
