@@ -4,20 +4,29 @@
   <div class="btnRelatorio">
     <div class="btnCadastro">
           <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" (click)="openModal()">Cadastrar Cliente</button> 
+      <button type="button" (click)="openModal()">Cadastrar Cliente</button> 
     </div>  
     <div class="relatorio">
-      <label for="relatorio">Relatório</label>
-      <select name="relatorio" id="relatorio" ngModel>
-        <option value="todos">Todos</option>
-        <option value="cliente">Cliente</option>
-      </select>
+      <div class="relatorioLabel">
+        <img  src="assets\imagens\agenda-icons.png">
+        <label for="relatorio">Relatório</label>
+      </div>
+      <div class="relatorioCampo">
+        <select name="relatorio" id="relatorio" ngModel>
+          <option value="todos">Todos</option>
+          <option value="cliente">Cliente</option>
+        </select>
+      </div>
     </div>
     <div class="ativoInativo">
-      <input type="checkbox" id="chkAtivo" nome="chkAtivo" checked>
-      <label for="scales">Ativo</label>  
-      <input type="checkbox" id="chkInativo" nome="chkInativo">
-      <label for="chkInativo">Inativo</label><br> 
+      <div>
+        <input type="checkbox" id="chkAtivo" nome="chkAtivo" checked>
+        <label for="scales">Ativo</label>  
+      </div>
+      <div class="inativo">
+        <input type="checkbox" id="chkInativo" nome="chkInativo">
+        <label for="chkInativo">Inativo</label><br> 
+      </div>
     </div>
   </div>   
 
@@ -32,7 +41,7 @@
           <th>E-mail</th>
           <th>Complemento</th>
           <th>Status</th>                  
-          <th>#</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -45,17 +54,14 @@
           <td>{{cliente.telefone}}</td>
           <td>{{cliente.email}}</td>
           <td>{{cliente.complemento}}</td>
-          <td>{{cliente.status}}</td>
-          <td>                      
-            <button id="editar" (click)="setEditar(cliente)"><img src="src\assets\imagens\editar-icons.png"></button>
-            <button id="editar" (click)="delete(cliente.id)">Excluir</button>
+          <td class="status {{cliente.status ? 'true' : 'false'}}">{{cliente.status}}</td>
+          <td>      
+            <a id="editar" routerLink="/" (click)="setEditar(cliente)"><img src="assets\imagens\editar-icons.png"></a>    
+            <a id="editar" routerLink="/" (click)="delete(cliente.id)"><img src="assets\imagens\lixo-icons.png"></a>       
         </td>
         </tr>
       </tbody>
     </table>  
-
-
- 
 
   <!-------------------------------- MODAL ------------------------------------------------------------------------------------>
   <div class="modal" id="myModal">
@@ -88,8 +94,38 @@
               <input type="text" name="bairro" id="bairro" ngModel required>
               <label for="cidade">Cidade*</label>
               <input type="text" name="cidade" id="cidade" ngModel required>
+              <!-- <label for="uf">UF*</label>
+              <input type="text" name="uf" id="uf" ngModel required> -->
               <label for="uf">UF*</label>
-              <input type="text" name="uf" id="uf" ngModel required>
+              <select name="uf" id="uf" ngModel required>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+              </select>
               <label for="cep">CEP*</label>
               <input type=" number" name="cep" id="cep" ngModel required>
               <label for="pais">País*</label>
