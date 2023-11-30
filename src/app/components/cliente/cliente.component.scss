@@ -64,8 +64,9 @@ h1 {
 
 .ativoInativo {
     display: flex;
-    background-color: purple;
     margin-left: 550px;
+    justify-content: center; /* Alinha horizontalmente no centro */
+    gap: 5px; /* Espaçamento entre os elementos */
 }
 
 .inativo {
@@ -95,12 +96,7 @@ td {
     height: 27px;
 }
 
-.custom-width {
-    max-width: 1000px; /* Definindo uma largura máxima de 600 pixels */
-    width: 90%; /* Definindo uma largura de 90% */
-}
-
-.status {
+.statusRelatorio {
     display: inline-block;
     align-items: center;
     margin-left: 20px;
@@ -117,3 +113,65 @@ td {
 .false {
     background-color: #dc3545;
 }
+
+/* ----------- Modal ---------------- */
+
+.container {
+    max-width: 1000px;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #EEEAEA;
+}
+
+.modal-header button {
+    border: none;
+    background-color: #EEEAEA;
+}
+
+.modal-header img {
+    width: 35px;
+    height: 35px;
+}
+
+.form-group {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#botoes input {
+    align-items: center;
+    border-radius: 5px; /* para definir o arredondamento */
+    border: 1px solid black;
+    height: 35px;
+}
+
+.form-group label {
+    display: block;
+    margin-top: 5px;
+    margin-left: 25px;
+}
+
+.formInputSelect input{
+    border-radius: 5px; /* para definir o arredondamento */
+    border: 1px solid black;
+    margin-top: 2px;
+    margin-left: 20px;
+    width: 250px;
+    height: 35px;
+}
+
+.formInputSelect select{
+    border-radius: 5px; /* para definir o arredondamento */
+    border: 1px solid black;
+    margin-top: 2px;
+    margin-left: 20px;
+    width: 250px;
+    height: 35px;
+}
+
+#status {
+    display: flex;
+}
+
+
+

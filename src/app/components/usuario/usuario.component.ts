@@ -25,68 +25,66 @@ export class UsuarioComponent {
         this.usuarios = response;
       },
       (error: any) => {
-        //alert("Erro ao buscar usuario!")
+        //alert("Erro ao buscar usuarios!")
       }
     )
   }
 
-  
-
-  // POST
-  public save(formulario: NgForm) {    
-    this.service.save(formulario.value, formulario.value.id).subscribe(
-      (response: any) => {
-        alert("Usuário salvo com sucesso.")
-        formulario.reset();
-        this.closeModal();
-      },
-      (error: any) => {
-        console.log(this.usuarios)
-        alert("Erro ao salvar usuário. " + JSON.stringify(error))
-      }
-    )
-  }
-
-  // PUT
-  public setEditar(usuario: Usuario) {
-    this.service.find(usuario.id).subscribe(
-      (response: Usuario) => { 
-        this.openModal();
-        this.formulario?.setValue(response);           
-      },
-      (error: any) => {
-        alert("Erro ao buscar usuário!");
-      }
-    );    
-  }  
-
-  // // DELETE
-  public delete(id: number) {
-    const confirmDelete = confirm('Tem certeza que deseja excluir a conta?');  
-    if (confirmDelete) {
-      this.service.delete(id).subscribe(
-        (response: any) => {
-          alert('Usuário excluído com sucesso');
-          this.get();
-        },
-        (error: any) => {
-          alert('Erro ao excluir o usuário. ' + error);
-        }
-      );
+ // POST
+ public save(formulario: NgForm) {  
+  this.service.save(formulario.value, formulario.value.id).subscribe(
+    (response: any) => {
+      alert("Usuario salvo com sucesso.")
+      formulario.reset();
+      this.get();
+      this.fecharModal();
+    },
+    (error: any) => {
+      alert("Erro ao salvar cliente. " + JSON.stringify(error))
     }
+  )
+}
+
+// PUT
+public setEditar(usuario: Usuario) {
+  this.service.find(usuario.id).subscribe(
+    (response: Usuario) => { 
+      this.abrirModal()
+      this.formulario?.setValue(response);  
+                  
+    },
+    (error: any) => {
+      alert("Erro ao buscar usuario!");
+    }
+  );    
+}  
+
+// // DELETE
+public delete(id: number) {
+  const confirmDelete = confirm('Tem certeza que deseja excluir este usuario?');
+
+  if (confirmDelete) {
+    this.service.delete(id).subscribe(
+      (response: any) => {
+        alert('Usuario excluído com sucesso');
+        this.get();
+      },
+      (error: any) => {
+        alert('Erro ao excluir o usuario. ' + error);
+      }
+    );
   }
-
-
+}
 
   // Chamar o MODAL
-  openModal() {
+  abrirModal() {
     const modelDiv = document.getElementById('myModal');
     if(modelDiv != null) {
         modelDiv.style.display = 'block'; 
     }
   }
 
-  closeModal() {
+  fecharModal() {
     const modelDiv = document.getElementById('myModal');
     if(modelDiv != null) {
         modelDiv.style.display = 'none'; 
