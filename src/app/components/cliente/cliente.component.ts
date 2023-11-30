@@ -13,6 +13,7 @@ import { ClienteRows } from 'src/app/models/ClienteRows';
 export class ClienteComponent {
   
   public status: boolean = true; // Valor padrão como true para o checkbox
+  public relatorio: boolean = true;
   private service: ClienteService = inject(ClienteService);
   public clientes: Cliente[] = [];
  // public  clientesRows!: ClienteRows;
@@ -20,26 +21,12 @@ export class ClienteComponent {
   @ViewChild("formulario") formulario: NgForm | undefined;
 
   ngOnInit(): void {
-   // this.get();
-    this.getP();
+   // this.getP();
+    this.get();
   }
 
-  // //Consulta com paginação
-  // public get(pageNumber: number = 0, pageSize: number = 10) {
-  //   this.service.get(pageNumber, pageSize).subscribe(
-  //     (response: ClienteRows) => {
-  //       this.clientesRows = response;
-  //     },
-  //     (error: any) => {
-  //       alert("Erro ao buscar clientes!")
-  //     }
-  //   )
-  // }
-
-
-
-  public getP() {
-    this.service.getP().subscribe(
+  public get() {
+    this.service.get().subscribe(
       (response: any) => {
         this.clientes = response;
       },
@@ -57,8 +44,8 @@ export class ClienteComponent {
       (response: any) => {
         alert("Cliente salvo com sucesso.")
         formulario.reset();
-        this.getP();
-        this.closeModal();
+        this.get();
+        this.fecharModal();
       },
       (error: any) => {
         alert("Erro ao salvar cliente. " + JSON.stringify(error))
@@ -70,7 +57,7 @@ export class ClienteComponent {
   public setEditar(cliente: Cliente) {
     this.service.find(cliente.id).subscribe(
       (response: Cliente) => { 
-        this.openModal()
+        this.abrirModal()
         this.formulario?.setValue(response);  
                     
       },
@@ -88,7 +75,7 @@ export class ClienteComponent {
       this.service.delete(id).subscribe(
         (response: any) => {
           alert('Cliente excluído com sucesso');
-          this.getP();
+          this.get();
         },
         (error: any) => {
           alert('Erro ao excluir o cliente. ' + error);
@@ -97,16 +84,28 @@ export class ClienteComponent {
     }
   }
 
+    // //Consulta com paginação
+  // public getP(pageNumber: number = 0, pageSize: number = 10) {
+  //   this.service.get(pageNumber, pageSize).subscribe(
+  //     (response: ClienteRows) => {
+  //       this.clientesRows = response;
+  //     },
+  //     (error: any) => {
+  //       alert("Erro ao buscar clientes!")
+  //     }
+  //   )
+  // }
+
   // Chamar o MODAL
-  openModal() {
-    const modelDiv = document.getElementById('myModal');
+  abrirModal() {
+    const modelDiv = document.getElementById('janelaModal');
     if(modelDiv != null) {
        modelDiv.style.display = 'block'; 
     }
   }
 
-  closeModal() {
-    const modelDiv = document.getElementById('myModal');
+  fecharModal() {
+    const modelDiv = document.getElementById('janelaModal');
     if(modelDiv != null) {
        modelDiv.style.display = 'none'; 
     }

@@ -1,18 +1,44 @@
 <body>
-    <form #formulario="ngForm" (ngSubmit)="save(formulario)">
-        <div>
-            <label for="email">E-mail*</label>
-            <input type="text" name="email" id="email" ngModel><br> 
-            <label for="senha">Senha*</label>
-            <input type="text" name="senha" id="senha" ngModel>
-        </div>
-        <div>
-            <input class="btnAzul" type="submit" value="Login">
-            <input class="btnAzul" type="reset" value="Limpar">
-        </div>   
-    </form>
-    <p>Já tem cadastro?  <a routerLink="/" (click)="openModal()">Cadastra-se</a></p>
-   
+    <form>
+      <div>
+        <label for="email">E-mail*</label>
+        <input type="text" name="email" id="email" ngModel> 
+      </div>
+      <div>
+        <label for="senha">Senha*</label>
+        <input type="password" name="senha" id="senha" ngModel>
+      </div>  
+    <div>
+      <input class="btnAzul" type="submit" value="Salvar">
+      <input class="btnAzul" type="reset" value="Limpar">
+    </div>   
+  </form>
+  <p>Já tem cadastro?  <a routerLink="/" (click)="abrirModal()">Cadastra-se</a></p>    
+    <!--- Teste -->
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nome Completo</th>
+          <th>E-mail</th>
+          <th>Senha</th>               
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+      <!-- <tr *ngFor="let cliente of clientesRows?.rows"> -->
+      <tr *ngFor="let usuario of usuarios"> 
+          <td>{{usuario.id}}</td>
+          <td>{{usuario.nomeCompleto}}</td>
+          <td>{{usuario.email}}</td>
+          <td>{{usuario.senha}}</td>
+          <td>      
+            <a id="editar" routerLink="/" (click)="setEditar(usuario)"><img src="assets\imagens\editar-icons.png"></a>    
+            <a id="editar" routerLink="/" (click)="delete(usuario.id)"><img src="assets\imagens\lixo-icons.png"></a>       
+        </td>
+        </tr>
+      </tbody>
+    </table>  
 
   <!-------------------------------- MODAL ------------------------------------------------------------------------------------>
   <div class="modal" id="myModal">
@@ -20,10 +46,14 @@
       <div class="modal-content" style="background-color: #EEEAEA;">
         <div class="modal-header">
           <h5 class="modal-title">Cadastrar usuário</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()">X</button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="fecharModal()">X</button>
         </div>
         <div class="modal-body">
           <form #formulario="ngForm" (ngSubmit)="save(formulario)">
+            <div>
+              <label for="id">Código*</label>
+              <input type="text" name="id" id="id" ngModel>
+            </div>
             <div>
               <label for="nomeCompleto">Nome Completo*</label>
               <input type="text" name="nomeCompleto" id="nomeCompleto" ngModel>
@@ -32,7 +62,7 @@
               <input type="text" name="email" id="email" ngModel> 
               <br>
               <label for="senha">Senha*</label>
-              <input type="text" name="senha" id="senha" ngModel>
+              <input type="password" name="senha" id="senha" ngModel>
             </div>
             <div>
               <input class="btnAzul" type="submit" value="Salvar">
