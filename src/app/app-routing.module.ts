@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { ProcessoComponent } from './components/processo/processo.component';
 
 const routes: Routes = [
   { path: 'clientes', component: ClienteComponent },
   { path: 'usuarios', component: UsuarioComponent },
+  { path: 'processos', component: ProcessoComponent },
 
   // Página padrão (opcional)
   { path: '', redirectTo: '/agenda', pathMatch: 'full' },
