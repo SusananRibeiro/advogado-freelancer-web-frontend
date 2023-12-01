@@ -46,7 +46,7 @@
       <div class="modal-content" style="background-color: #EEEAEA;">
         <div class="modal-header">
           <h5 class="modal-title">Cadastrar usuário</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="fecharModal()">X</button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></button>
         </div>
         <div class="modal-body">
           <form #formulario="ngForm" (ngSubmit)="save(formulario)">
@@ -55,14 +55,22 @@
               <input type="text" name="id" id="id" ngModel>
             </div>
             <div>
-              <label for="nomeCompleto">Nome Completo*</label>
-              <input type="text" name="nomeCompleto" id="nomeCompleto" ngModel>
-              <br>
-              <label for="email">E-mail*</label>
-              <input type="text" name="email" id="email" ngModel> 
-              <br>
+              <div>
+                <label for="nomeCompleto">Nome Completo*</label>
+                <input type="text" name="nomeCompleto" id="nomeCompleto" ngModel>
+              </div>
+              <div>
+                <label for="email">E-mail*</label>
+                <input type="text" name="email" id="email" ngModel> 
+              </div>
+            <div>
               <label for="senha">Senha*</label>
               <input type="password" name="senha" id="senha" ngModel>
+            </div>
+            <div>
+              <label for="confirmaSenha">Confirma Senha*</label>
+              <input type="password" name="confirmaSenha" id="confirmaSenha" ngModel>
+            </div>
             </div>
             <div>
               <input class="btnAzul" type="submit" value="Salvar">
