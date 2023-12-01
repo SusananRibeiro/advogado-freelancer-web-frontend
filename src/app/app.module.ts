@@ -7,13 +7,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { ProcessoComponent } from './components/processo/processo.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ClienteComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    ProcessoComponent
   ],
   imports: [
     BrowserModule,
