@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { ProcessoComponent } from './components/processo/processo.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ProcessoComponent } from './components/processo/processo.component';
     AppComponent,
     ClienteComponent,
     UsuarioComponent,
-    ProcessoComponent
+    ProcessoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

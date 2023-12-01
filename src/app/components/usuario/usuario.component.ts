@@ -78,14 +78,14 @@ public delete(id: number) {
 
   // Chamar o MODAL
   abrirModal() {
-    const modelDiv = document.getElementById('myModal');
+    const modelDiv = document.getElementById('janelaModal');
     if(modelDiv != null) {
         modelDiv.style.display = 'block'; 
     }
   }
 
   fecharModal() {
-    const modelDiv = document.getElementById('myModal');
+    const modelDiv = document.getElementById('janelaModal');
     if(modelDiv != null) {
         modelDiv.style.display = 'none'; 
     }
