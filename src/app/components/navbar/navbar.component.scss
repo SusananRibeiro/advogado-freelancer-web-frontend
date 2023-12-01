@@ -1,0 +1,40 @@
+body {
+    background-color: #EEEAEA;
+}
+
+ul {
+    list-style-type: none;
+    margin-top: 10px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #6765D7;
+  }
+
+  li {
+    float: left;
+  }
+
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  li a:hover {
+    background-color: #111061;
+  }
+
+.blocoImagem {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Empurra o bloco de imagens para a direita */
+}
+
+.imagem {
+    width: 30px; /* Tamanho das imagens, ajuste conforme necessário */
+    height: auto;
+    margin-left: 10px; /* Espaçamento entre as imagens, ajuste conforme necessário */  
+}
+
