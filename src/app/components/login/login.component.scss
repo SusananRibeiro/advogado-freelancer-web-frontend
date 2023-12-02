@@ -4,13 +4,13 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100vh;
     background-color: #f5f5f5;
 }
 
 .login-container {
     background-color: #fff;
+    margin-top: 30px;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -23,7 +23,6 @@ body {
 
 .login-form h2 {
     text-align: center;
-    margin-bottom: 20px;
 }
 
 .input-group {
@@ -32,7 +31,6 @@ body {
 
 .input-group label {
     display: block;
-    margin-bottom: 5px;
 }
 
 .input-group input {
@@ -53,7 +51,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /*cor que o botão vai ficar com o mouse em cima*/
 }
 
 /* MODAL*/
@@ -76,9 +74,10 @@ button:hover {
     background-color: #EEEAEA;
 }
 
-.modal-header button {
-    border: none;
-    background-color: #EEEAEA;
+.modal-header {
+    background-color: aqua;
+    margin: 0;
+    padding-bottom: 10px;
 }
 
 .modal-header img {
@@ -88,4 +87,22 @@ button:hover {
 
 .elemento-invisivel {
     visibility: hidden;
+    width: 35px;
+    height: 15px;
+}
+
+.elemento-invisivel input {
+    width: 15px;
+    height: 5px;
+}
+
+
+.modal-form {
+    margin-bottom: 20px;
+    background-color: #007bff;
+}
+
+.modal-form label {
+    margin-bottom: 20px;
+    margin-right: 5px;
 }

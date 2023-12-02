@@ -1,7 +1,7 @@
 import { Component, inject, ViewChild, ElementRef  } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Usuario } from 'src/app/models/Usuario';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-login',
@@ -43,6 +43,28 @@ export class LoginComponent {
   )
 }
 
+  // POST
+ public savesaveLogin(formulario: NgForm) {  
+  this.service.save(formulario.value, formulario.value.id).subscribe(
+    (response: any) => {
+      this.abrirUsuario()
+      // alert("Usuario salvo com sucesso.")
+      // formulario.reset();
+      // this.get();
+    },
+    (error: any) => {
+      alert("Erro ao salvar cliente. " + JSON.stringify(error))
+    }
+  )
+}
+
+  // Chamar o Component
+  abrirUsuario() {
+    const modelDiv = document.getElementById('ClienteComponent');
+    if(modelDiv != null) {
+        modelDiv.style.display = 'ClienteComponent'; 
+    }
+  }
 
   // Chamar o MODAL
   abrirModal() {

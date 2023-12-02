@@ -1,6 +1,6 @@
 import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { Usuario } from 'src/app/models/Usuario';
 
 @Component({
