@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { ProcessoComponent } from './components/processo/processo.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +17,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ClienteComponent,
     UsuarioComponent,
     ProcessoComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    HttpClientModule    
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -24,22 +24,21 @@ export class ClienteComponent {
    // this.getP();
     this.get();
   }
-
+  // GET
   public get() {
     this.service.get().subscribe(
       (response: any) => {
+        
         this.clientes = response;
       },
       (error: any) => {
-        //alert("Erro ao buscar clientes!")
+        
       }
     )
   }
 
-
   // POST
-  public save(formulario: NgForm) {    
-
+  public save(formulario: NgForm) {   
     this.service.save(formulario.value, formulario.value.id).subscribe(
       (response: any) => {
         alert("Cliente salvo com sucesso.")
