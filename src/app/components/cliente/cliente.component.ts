@@ -1,6 +1,6 @@
 import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ClienteService } from '../../services/cliente.service';
+import { ClienteService } from '../../services/cliente/cliente.service';
 import { Cliente } from '../../models/Cliente';
 import { ClienteRows } from 'src/app/models/ClienteRows';
 

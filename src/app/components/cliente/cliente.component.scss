@@ -78,6 +78,11 @@ table {
     width: 100%;
 }
 
+.tabela-com-scroll {
+    overflow: auto;
+    height: 300px; /* Defina a altura desejada para a tabela com a barra de rolagem */
+  }
+
 th {    
     background-color: #111061;
     color: #ffff;
@@ -107,6 +112,7 @@ td {
 }
 
 .true {
+    color: #28a745;
     background-color: #28a745;
 }
 
@@ -134,14 +140,15 @@ td {
     background-color: #EEEAEA;
 }
 
-.modal-header button {
-    border: none;
-    background-color: #EEEAEA;
+.modal-header {
+    font-size: 20px;
+    margin: 0;
+    padding-bottom: 10px;
 }
 
 .modal-header img {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
 }
 
 .form-group {

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from 'src/app/models/Cliente';
 import { enviroment } from 'src/env/env.dev';
-import { ClienteRows } from '../models/ClienteRows';
+import { ClienteRows } from '../../models/ClienteRows';
 
 @Injectable({
   providedIn: 'root'

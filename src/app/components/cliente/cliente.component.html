@@ -30,46 +30,48 @@
       </div>
     </div>
   </div>   
-
-    <table>
-      <thead>
-        <tr>
-          <th>Código</th>
-          <th>Cliente</th>
-          <th>CPF/CNPJ</th>
-          <th>Endereço</th>
-          <th>Telefone</th>
-          <th>E-mail</th>
-          <th>Complemento</th>
-          <th>Status</th>                  
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-      <!-- <tr *ngFor="let cliente of clientesRows?.rows"> -->
-      <tr *ngFor="let cliente of clientes"> 
-          <td>{{cliente.id}}</td>
-          <td>{{cliente.nomeCompleto}}</td>
-          <td>{{cliente.cpfOuCnpj}}</td>
-          <td>{{cliente.rua}}, {{cliente.numero}}, {{cliente.bairro}}, {{cliente.cidade}}, {{cliente.uf}}, {{cliente.pais}}</td>
-          <td>{{cliente.telefone}}</td>
-          <td>{{cliente.email}}</td>
-          <td>{{cliente.complemento}}</td>
-          <td class="statusRelatorio {{cliente.status ? 'true' : 'false'}}">{{cliente.status}}</td>
-          <td>      
-            <a id="editar" routerLink="/" (click)="setEditar(cliente)"><img src="assets\imagens\editar-icons.png"></a>    
-            <a id="editar" routerLink="/" (click)="delete(cliente.id)"><img src="assets\imagens\lixo-icons.png"></a>       
-        </td>
-        </tr>
-      </tbody>
-    </table>  
+<div  class="tabela-com-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Cliente</th>
+        <th>CPF/CNPJ</th>
+        <th>Endereço</th>
+        <th>Telefone</th>
+        <th>E-mail</th>
+        <th>Complemento</th>
+        <th>Status</th>                  
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <!-- <tr *ngFor="let cliente of clientesRows?.rows"> -->
+    <tr *ngFor="let cliente of clientes"> 
+        <td>{{cliente.id}}</td>
+        <td>{{cliente.nomeCompleto}}</td>
+        <td>{{cliente.cpfOuCnpj}}</td>
+        <td>{{cliente.rua}}, {{cliente.numero}}, {{cliente.bairro}}, {{cliente.cidade}}, {{cliente.uf}}, {{cliente.pais}}</td>
+        <td>{{cliente.telefone}}</td>
+        <td>{{cliente.email}}</td>
+        <td>{{cliente.complemento}}</td>
+        <td class="statusRelatorio {{cliente.status ? 'true' : 'false'}}">{{cliente.status}}</td>
+        <td>      
+          <a id="editar" routerLink="/" (click)="setEditar(cliente)"><img src="assets\imagens\editar-icons.png"></a>    
+          <a id="editar" routerLink="/" (click)="delete(cliente.id)"><img src="assets\imagens\lixo-icons.png"></a>       
+      </td>
+      </tr>
+    </tbody>
+  </table>  
+</div>
+    
 
   <!-------------------------------- MODAL ------------------------------------------------------------------------------------>
   <div class="modal-container" id="janelaModal">
     <div class="container">
         <div class="modal-header">
           <h5 class="modal-title">Cadastrar Cliente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></button>
+          <a id="editar" routerLink="/" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></a>  
         </div>
         <div>
           <form #formulario="ngForm" (ngSubmit)="save(formulario)">
