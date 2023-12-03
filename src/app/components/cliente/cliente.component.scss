@@ -22,13 +22,13 @@ h1 {
 .btnRelatorio button {
     margin-left: 5px;
     border-radius: 5px; /* para definir o arredondamento */
-    border: 1px solid black;
+    border: 1px solid #111061;
     width: 180px;
     height: 35px;
     background-color: #111061;
     color: #ffff;
     text-align: center;
-    font-size: 12px;
+    // font-size: 12px;
 }
 
 .relatorio {
@@ -66,7 +66,11 @@ h1 {
     display: flex;
     margin-left: auto;
     justify-content: center; /* Alinha horizontalmente no centro */
-    gap: 5px; /* Espaçamento entre os elementos */
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+
+.ativoInativo label {
+    margin: 5px;
 }
 
 .inativo {
@@ -117,6 +121,7 @@ td {
 }
 
 .false {
+    color: #dc3545;
     background-color: #dc3545;
 }
 
@@ -156,13 +161,6 @@ td {
     margin-bottom: 10px;
 }
 
-#botoes input {
-    align-items: center;
-    border-radius: 5px; /* para definir o arredondamento */
-    border: 1px solid black;
-    height: 35px;
-}
-
 .form-group label {
     display: block;
     margin-top: 5px;
@@ -190,6 +188,23 @@ td {
 #status {
     display: flex;
 }
+
+#modal-botao-centro {
+    margin-left: 780px;
+    display: flex;
+}
+
+#modal-botao-centro button {
+    border-radius: 5px; /* para definir o arredondamento */
+    border: 1px solid #111061;
+    width: 80px;
+    height: 35px;
+    background-color: #111061;
+    color: #fff;
+    margin: 5px;
+}
+
+
 
 
 
