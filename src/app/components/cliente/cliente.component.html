@@ -22,7 +22,7 @@
     <div class="ativoInativo">
       <div>
         <input type="checkbox" id="chkAtivo" nome="chkAtivo" checked [(ngModel)]="relatorio">
-        <label for="scales">Ativo</label>  
+        <label for="scales">Ativo</label> 
       </div>
       <div class="inativo">
         <input type="checkbox" id="chkInativo" nome="chkInativo">
@@ -176,11 +176,14 @@
                   <input type="checkbox" name="status" [(ngModel)]="status"><p>Ativo</p>
                 </div>             
                 </div>                
+              </div>                           
+            <div id="modal-botao-centro">
+              <div class="salvar">
+                <button  type="submit" value="Salvar">Salvar</button>
+              </div>
+              <div>
+                <button type="reset" value="Limpar">Limpar</button>
               </div>             
-                     
-            <div>
-              <input id="botoes" type="submit" value="Salvar">
-              <input id="botoes" type="reset" value="Limpar">
             </div>   
           </form>
         </div>
