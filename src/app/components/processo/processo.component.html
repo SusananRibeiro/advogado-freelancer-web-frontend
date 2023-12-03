@@ -3,15 +3,14 @@
 
   <div class="btnRelatorio">
     <div class="btnCadastro">
-          <!-- Button trigger modal -->
-      <button type="button" (click)="abrirModal()">Cadastrar Processo</button> 
-    </div>  
+      <button type="button" (click)="abrirModal()">Cadastrar Processo</button>
+    </div>
     <div class="relatorio">
       <div class="relatorioLabel">
-        <img  src="assets\imagens\agenda-icons.png">
+        <img src="assets\imagens\agenda-icons.png">
         <label for="relatorio">Relatório</label>
       </div>
-      <div class="relatorioCampo">        
+      <div class="relatorioCampo">
         <select name="relatorio" id="relatorio" ngModel>
           <option value="todos">Todos</option>
           <option value="processo">Processo</option>
@@ -20,16 +19,17 @@
     </div>
     <div class="status">
       <div>
-        <input type="checkbox" id="chkArquivado" nome="chkArquivado" checked [(ngModel)]="relatorio">
-        <label for="scales">Arquivado</label>  
+        <input type="checkbox" id="chkArquivado" nam="chkArquivado" checked [(ngModel)]="relatorio">
+        <label for="scales">Arquivado</label>
       </div>
       <div class="emAndamento">
-        <input type="checkbox" id="chkEmAndamento" nome="chkEmAndamento">
-        <label for="chkEmAndamento">Em andamento</label><br> 
+        <input type="checkbox" id="chkEmAndamento" name="chkEmAndamento">
+        <label for="chkEmAndamento">Em Andamento</label><br>
       </div>
     </div>
-  </div>   
+  </div>
 
+  <div class="tabela-com-scroll">
     <table>
       <thead>
         <tr>
@@ -40,16 +40,17 @@
           <th>Tribunal</th>
           <th>Vara</th>
           <th>Comarca</th>
-          <th>Data</th> 
-          <th>Cliente</th>                     
+          <th>Data</th>
+          <th>Cliente</th>
           <th>Status</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-      
-      <tr *ngFor="let processo of processos"> 
-          <td>{{processo.linkDocumentos}}</td>
+
+        <tr *ngFor="let processo of processos">
+          <td><a id="editar" (click)="abrirDocumento(processo.linkDocumento)"><img
+                src="assets\imagens\arquivo-icons.png"></a></td>
           <td>{{processo.id}}</td>
           <td>{{processo.numeroProcesso}}</td>
           <td>{{processo.acaoProcesso}}</td>
@@ -57,102 +58,109 @@
           <td>{{processo.vara}}</td>
           <td>{{processo.comarca}}</td>
           <td>{{processo.dataContrato}}</td>
-          <td>{{processo.codigoCliente}}</td>
-          <td>{{processo.status}}</td>
-          <td>      
-            <a id="editar" routerLink="/" (click)="setEditar(processo)"><img src="assets\imagens\editar-icons.png"></a>    
-            <a id="editar" routerLink="/" (click)="delete(processo.id)"><img src="assets\imagens\lixo-icons.png"></a>       
-        </td>
+          <td>{{processo.clienteId}}</td>
+          <td>{{processo.status == 'EmAndamento' ? 'Em andamento' : 'Arquivado'}}</td>
+          <td>
+            <a id="editar" routerLink="/" (click)="setEditar(processo)"><img src="assets\imagens\editar-icons.png"></a>
+            <a id="editar" routerLink="/" (click)="delete(processo.id)"><img src="assets\imagens\lixo-icons.png"></a>
+          </td>
         </tr>
       </tbody>
-    </table>  
+    </table>
+  </div>
 
   <!-------------------------------- MODAL ------------------------------------------------------------------------------------>
-  <div class="modal" id="janelaModal">
+  <div class="modal-container" id="janelaModal">
     <div class="container">
-        <div class="modal-header">
-          <h5 class="modal-title">Cadastrar Processo</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></button>
-        </div>
-        <div>
-          <form #formulario="ngForm" (ngSubmit)="save(formulario)">
-              <div class="form-group">
-                <div class="formInputSelect">
-                  <label for="id">Código do Processo</label>               
-                  <input type="text" name="id" id="id" readonly ngModel>
-                </div>          
-                <div class="formInputSelect">
-                  <label for="numeroProcesso">Número Processo*</label>
-                  <input type="text" name="numeroProcesso" id="numeroProcesso" ngModel required>
-                </div>
-                <div class="formInputSelect">
-                  <label for="dataContrato">Data do Contrato*</label>
-                  <input type="date" name="dataContrato" id="dataContrato" ngModel required>
-                </div>
-              </div>
-            <div class="form-group">
-              <div class="formInputSelect">
-                <label for="codigoCliente">Código do Cliente*</label>
-                <input type="text" name="codigoCliente" id="codigoCliente" ngModel required>
-              </div>
-              <div class="formInputSelect">
-                <label for="acaoProcesso">Ação do Processo*</label>
-                <input type="text" name="acaoProcesso" id="acaoProcesso" ngModel required>
-              </div>
-              <div class="formInputSelect">
-                <label for="tribunal">Tribunal</label>
-                <input type="text" name="tribunal" id="tribunal" ngModel>
-              </div>
+      <div class="modal-header">
+        <h5 class="modal-title">Cadastro Processo</h5>
+        <a id="editar" routerLink="/" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></a>
+      </div>
+      <div>
+        <form #formulario="ngForm" (ngSubmit)="save(formulario)">
+          <div class="form-group">
+            <div class="formInputSelect">
+              <label for="id">Código do Processo</label>
+              <input class="idProcesso" type="text" name="id" id="id" readonly ngModel>
             </div>
-            <div class="form-group">
-              <div class="formInputSelect">
-                <label for="vara">Vara*</label>
-                <input type="text" name="vara" id="vara" ngModel required>
-              </div>
-              <div class="formInputSelect">
-                <label for="comarca">Comarca*</label>
-                <input type="text" name="comarca" id="comarca" ngModel required>
-              </div>         
+            <div class="formInputSelect">
+              <label for="numeroProcesso">Número Processo*</label>
+              <input class="numProcesso" type="text" name="numeroProcesso" id="numeroProcesso" ngModel required>
             </div>
-            <div class="form-group">
-              <div class="formInputSelect">
-                <label for="foro">Foro*</label>
-                <input type="text" name="foro" id="foro" ngModel required>
-              </div>
-              <div class="formInputSelect">
-                <label for="linkDocumentos">Link para pasta de documentos*</label>
-                <input type="text" name="linkDocumentos" id="linkDocumentos" ngModel required>
-              </div>
-              <div class="formInputSelect">
-                <label for="dataAbertura">Data de abertura</label>
-                <input type="date" name="dataAbertura" id="dataAbertura" ngModel>
-              </div>
+            <div class="formInputSelect">
+              <label for="dataContrato">Data do Contrato*</label>
+              <input class="dtContrato" type="date" name="dataContrato" id="dataContrato" ngModel required>
             </div>
-            <div class="form-group">
-              <div class="formInputSelect">  
-                <label for="dataFechamento">Data do fechamento*</label>
-                <input type="text" name="dataFechamento" id="dataFechamento" ngModel required>
-              </div>
-              <div id="status">
-                <div>
-                  <label>Status*</label>
-                </div>
-                <div>
-                  <input type="checkbox" name="status" [(ngModel)]="status"><p>Em Andamento</p>
-                  <input type="checkbox" name="status" [(ngModel)]="status"><p>Arquivado</p>
-                </div>             
-                </div>                
-              </div>             
-                     
+            <div class="formInputSelect">
+              <label for="clienteId">Código do Cliente*</label>
+              <input type="text" name="clienteId" id="clienteId" ngModel required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="formInputSelect">
+              <label for="acaoProcesso">Ação do Processo*</label>
+              <input class="acao" type="text" name="acaoProcesso" id="acaoProcesso" ngModel required>
+            </div>
+            <div class="formInputSelect">
+              <label for="tribunal">Tribunal</label>
+              <input class="tribunal" type="text" name="tribunal" id="tribunal" ngModel>
+            </div>
+            <div class="formInputSelect">
+              <label for="vara">Vara</label>
+              <input type="text" name="vara" id="vara" ngModel>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="formInputSelect">
+              <label for="comarca">Comarca</label>
+              <input class="comarca" type="text" name="comarca" id="comarca" ngModel>
+            </div>
+            <div class="formInputSelect">
+              <label for="foro">Foro</label>
+              <input type="text" name="foro" id="foro" ngModel>
+            </div>
+            <div class="formInputSelect">
+              <label for="linkDocumento">Link para pasta de documentos*</label>
+              <input class="link" type="text" name="linkDocumento" id="linkDocumento" ngModel required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="formInputSelect">
+              <label for="dataAbertura">Data de abertura*</label>
+              <input class="data" type="date" name="dataAbertura" id="dataAbertura" ngModel>
+            </div>
+            <div class="formInputSelect">
+              <label for="dataFechamento">Data do fechamento</label>
+              <input class="data" type="date" name="dataFechamento" id="dataFechamento" ngModel>
+            </div>
+
+
             <div>
-              <input id="botoes" type="submit" value="Salvar">
-              <input id="botoes" type="reset" value="Limpar">
-            </div>   
-          </form>
-        </div>
+              <label>Status</label>
+              <div class="status-cadastro">
+                <label for="emAndamento">
+                  <input type="radio" id="emAndamento" name="status" [(ngModel)]="status" value="EmAndamento">
+                  Em Andamento
+                </label>
+
+                <label for="arquivado">
+                  <input type="radio" id="arquivado" name="status" [(ngModel)]="status" value="Arquivado">
+                  Arquivado
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <div class="botoes">
+            <input id="botoes" type="submit" value="Salvar">
+            <input id="botoes" type="reset" value="Limpar">
+          </div>
+        </form>
       </div>
     </div>
+  </div>
 
- <!-------------------------------- FIM do MODAL -------------------------------------------------------------------------------->
+  <!-------------------------------- FIM do MODAL -------------------------------------------------------------------------------->
 
 </body>

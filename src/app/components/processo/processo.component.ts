@@ -12,7 +12,7 @@ import { ProcessoRows } from 'src/app/models/ProcessoRows';
 })
 export class ProcessoComponent {
 
-    public status: number = 1;
+    public status: string = "EmAndamento";
     public relatorio: boolean = true;
     private service: ProcessoService = inject(ProcessoService);
     public processos: Processo[] = [];
@@ -29,11 +29,17 @@ export class ProcessoComponent {
                 this.processos = response;
             },
             (error: any) => {
-                //alert("Erro ao buscar processos!")
+                let errorMessage = "Erro desconhecido";
+
+                // Verifica se a resposta contém um corpo e mensagens de erro
+                if (error.error && error.error.messages) {
+                    // Assume que pode haver várias mensagens, pega a primeira
+                    errorMessage = error.error.messages[0];
+                }
+                alert("Erro ao buscar processo: " + errorMessage)
             }
         )
     }
-
 
     public save(formulario: NgForm) {
 
@@ -45,20 +51,33 @@ export class ProcessoComponent {
                 this.fecharModal();
             },
             (error: any) => {
-                alert("Erro ao salvar processo. " + JSON.stringify(error))
+                let errorMessage = "Erro desconhecido";
+
+                // Verifica se a resposta contém um corpo e mensagens de erro
+                if (error.error && error.error.messages) {
+                    // Assume que pode haver várias mensagens, pega a primeira
+                    errorMessage = error.error.messages[0];
+                }
+                alert("Erro ao salvar processo: " + errorMessage)
             }
         )
     }
 
-    public setEditar(processo: Processo) {
+    public setEditar(processo: Processo) {        
         this.service.find(processo.id).subscribe(
             (response: Processo) => {
                 this.abrirModal()
                 this.formulario?.setValue(response);
-
             },
             (error: any) => {
-                alert("Erro ao buscar processo!");
+                let errorMessage = "Erro desconhecido";
+
+                // Verifica se a resposta contém um corpo e mensagens de erro
+                if (error.error && error.error.messages) {
+                    // Assume que pode haver várias mensagens, pega a primeira
+                    errorMessage = error.error.messages[0];
+                }
+                alert("Erro ao salvar processo: " + errorMessage)
             }
         );
     }
@@ -74,7 +93,14 @@ export class ProcessoComponent {
                     this.get();
                 },
                 (error: any) => {
-                    alert('Erro ao excluir o processo. ' + error);
+                    let errorMessage = "Erro desconhecido";
+    
+                    // Verifica se a resposta contém um corpo e mensagens de erro
+                    if (error.error && error.error.messages) {
+                        // Assume que pode haver várias mensagens, pega a primeira
+                        errorMessage = error.error.messages[0];
+                    }
+                    alert("Erro ao excluir processo: " + errorMessage)
                 }
             );
         }
@@ -94,4 +120,8 @@ export class ProcessoComponent {
             modelDiv.style.display = 'none';
         }
     }
+
+    abrirDocumento(endereco: string) {
+        window.open(endereco, '_blank', 'width=800,height=600');
+      }
 }
