@@ -1,0 +1,61 @@
+<body> 
+    <div class="login-container">
+        <form class="login-form" #formulario="ngForm" (ngSubmit)="save(formulario)">
+            <h2>Login</h2>
+            <div class="input-group">
+                <label for="email">E-mail*</label>
+                <input type="text" name="email" id="email" ngModel required> 
+            </div>
+            <div class="input-group">
+                <label for="senha">Senha*</label>
+                <input type="password" name="senha" id="senha" ngModel required>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+        <p>Já tem cadastro?  <a routerLink="/" (click)="abrirModal()">Cadastra-se</a></p>   
+    </div>
+
+  <!-------------------------------- MODAL ------------------------------------------------------------------------------------>
+  <div class="modal-container" id="janelaModal">
+    <div class="container">
+        <div class="modal-header">
+          <h5 class="modal-title">Cadastrar usuário</h5>
+          <a id="editar" routerLink="/" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></a>  
+        </div>
+        <div class="modal-body">
+          <form #formulario="ngForm" (ngSubmit)="save(formulario)">
+            <div class="elemento-invisivel">
+              <label for="id"></label>
+              <input type="text" name="id" id="id" readonly ngModel>
+            </div>
+            <div class="modal-form">
+              <div>
+                <label for="nomeCompleto">Nome Completo* </label>
+                <input type="text" name="nomeCompleto" id="nomeCompleto" ngModel>
+              </div>
+              <div>
+                <label for="email">E-mail* </label>
+                <input type="text" name="email" id="email" ngModel> 
+              </div>
+            <div>
+              <label for="senha">Senha* </label>
+              <input type="password" name="senha" id="senha" ngModel>
+            </div>
+            <div>
+              <label for="confirmaSenha">Confirma Senha* </label>
+              <input type="password" name="confirmaSenha" id="confirmaSenha" ngModel>
+            </div>
+            </div>
+            <div>
+              <input class="btnAzul" type="submit" value="Salvar">
+              <input class="btnAzul" type="reset" value="Limpar">
+            </div>   
+          </form>
+        </div>
+      </div>
+    </div>
+  
+ <!-------------------------------- FIM do MODAL -------------------------------------------------------------------------------->
+
+</body>
+

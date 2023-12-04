@@ -1,0 +1,196 @@
+<!-- <app-navbar></app-navbar> -->
+<body>
+  <h1>Clientes</h1>
+
+  <div class="btnRelatorio">
+    <div class="btnCadastro">
+          <!-- Button trigger modal -->
+      <button type="button" (click)="abrirModal()">Cadastrar Cliente</button> 
+    </div>  
+    <div class="relatorio">
+      <div class="relatorioLabel">
+        <img  src="assets\imagens\agenda-icons.png">
+        <label for="relatorio">Relatório</label>
+      </div>
+      <div class="relatorioCampo">        
+        <select name="relatorio" id="relatorio" ngModel>
+          <option value="todos">Todos</option>
+          <option value="cliente">Cliente</option>
+        </select>
+      </div>
+    </div>
+    <div class="ativoInativo">
+      <div>
+        <input type="checkbox" id="chkAtivo" nome="chkAtivo" checked [(ngModel)]="relatorio">
+        <label for="scales">Ativo</label> 
+      </div>
+      <div class="inativo">
+        <input type="checkbox" id="chkInativo" nome="chkInativo">
+        <label for="chkInativo">Inativo</label><br> 
+      </div>
+    </div>
+  </div>   
+<div  class="tabela-com-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Cliente</th>
+        <th>CPF/CNPJ</th>
+        <th>Endereço</th>
+        <th>Telefone</th>
+        <th>E-mail</th>
+        <th>Complemento</th>
+        <th>Status</th>                  
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <!-- <tr *ngFor="let cliente of clientesRows?.rows"> -->
+    <tr *ngFor="let cliente of clientes"> 
+        <td>{{cliente.id}}</td>
+        <td>{{cliente.nomeCompleto}}</td>
+        <td>{{cliente.cpfOuCnpj}}</td>
+        <td>{{cliente.rua}}, {{cliente.numero}}, {{cliente.bairro}}, {{cliente.cidade}}, {{cliente.uf}}, {{cliente.pais}}</td>
+        <td>{{cliente.telefone}}</td>
+        <td>{{cliente.email}}</td>
+        <td>{{cliente.complemento}}</td>
+        <td class="statusRelatorio {{cliente.status ? 'true' : 'false'}}">{{cliente.status}}</td>
+        <td>      
+          <a id="editar" routerLink="/" (click)="setEditar(cliente)"><img src="assets\imagens\editar-icons.png"></a>    
+          <a id="editar" routerLink="/" (click)="delete(cliente.id)"><img src="assets\imagens\lixo-icons.png"></a>       
+      </td>
+      </tr>
+    </tbody>
+  </table>  
+</div>
+    
+
+  <!-------------------------------- MODAL ------------------------------------------------------------------------------------>
+  <div class="modal-container" id="janelaModal">
+    <div class="container">
+        <div class="modal-header">
+          <h5 class="modal-title">Cadastrar Cliente</h5>
+          <a id="editar" routerLink="/" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></a>  
+        </div>
+        <div>
+          <form #formulario="ngForm" (ngSubmit)="save(formulario)">
+              <div class="form-group">
+                <div class="formInputSelect">
+                  <label for="id">Código do Cliente</label>               
+                  <input type="text" name="id" id="id" readonly ngModel>
+                </div>          
+                <div class="formInputSelect">
+                  <label for="nomeCompleto">Nome Completo*</label>
+                  <input type="text" name="nomeCompleto" id="nomeCompleto" ngModel required>
+                </div>
+                <div class="formInputSelect">
+                  <label for="cpfOuCnpj">CPF/CNPJ*</label>
+                  <input type="text" name="cpfOuCnpj" id="cpfOuCnpj" ngModel required>
+                </div>
+              </div>
+            <div class="form-group">
+              <div class="formInputSelect">
+                <label for="dataNascimento">Data do Nascimento*</label>
+                <input type="date" name="dataNascimento" id="dataNascimento" ngModel required>
+              </div>
+              <div class="formInputSelect">
+                <label for="rua">Rua*</label>
+                <input type="text" name="rua" id="rua" ngModel required>
+              </div>
+              <div class="formInputSelect">
+                <label for="numero">Número</label>
+                <input type="text" name="numero" id="numero" ngModel>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="formInputSelect">
+                <label for="bairro">Bairro*</label>
+                <input type="text" name="bairro" id="bairro" ngModel required>
+              </div>
+              <div class="formInputSelect">
+                <label for="cidade">Cidade*</label>
+                <input type="text" name="cidade" id="cidade" ngModel required>
+              </div>
+              <div class="formInputSelect">
+                <label for="uf">UF*</label>
+                <select name="uf" id="uf" ngModel required>
+                  <option value="AC">Acre</option>
+                  <option value="AL">Alagoas</option>
+                  <option value="AP">Amapá</option>
+                  <option value="AM">Amazonas</option>
+                  <option value="BA">Bahia</option>
+                  <option value="CE">Ceará</option>
+                  <option value="DF">Distrito Federal</option>
+                  <option value="ES">Espírito Santo</option>
+                  <option value="GO">Goiás</option>
+                  <option value="MA">Maranhão</option>
+                  <option value="MT">Mato Grosso</option>
+                  <option value="MS">Mato Grosso do Sul</option>
+                  <option value="MG">Minas Gerais</option>
+                  <option value="PA">Pará</option>
+                  <option value="PB">Paraíba</option>
+                  <option value="PR">Paraná</option>
+                  <option value="PE">Pernambuco</option>
+                  <option value="PI">Piauí</option>
+                  <option value="RJ">Rio de Janeiro</option>
+                  <option value="RN">Rio Grande do Norte</option>
+                  <option value="RS">Rio Grande do Sul</option>
+                  <option value="RO">Rondônia</option>
+                  <option value="RR">Roraima</option>
+                  <option value="SC">Santa Catarina</option>
+                  <option value="SP">São Paulo</option>
+                  <option value="SE">Sergipe</option>
+                  <option value="TO">Tocantins</option>
+                </select>
+              </div>              
+            </div>
+            <div class="form-group">
+              <div class="formInputSelect">
+                <label for="cep">CEP*</label>
+                <input type=" number" name="cep" id="cep" ngModel required>
+              </div>
+              <div class="formInputSelect">
+                <label for="pais">País*</label>
+                <input type="text" name="pais" id="pais" ngModel required>
+              </div>
+              <div class="formInputSelect">
+                <label for="complemento">Complemento</label>
+                <input type="text" name="complemento" id="complemento" ngModel>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="formInputSelect">  
+                <label for="telefone">Telefone*</label>
+                <input type="text" name="telefone" id="telefone" ngModel required> <!-- "required" para dizer que o campo é obrigatorio-->
+              </div>
+              <div class="formInputSelect">
+                <label for="email">E-mail</label>
+                <input type="text" name="email" id="email" ngModel> 
+              </div>
+              <div id="status">
+                <div>
+                  <label>Status*</label>
+                </div>
+                <div>
+                  <input type="checkbox" name="status" [(ngModel)]="status"><p>Ativo</p>
+                </div>             
+                </div>                
+              </div>                           
+            <div id="modal-botao-centro">
+              <div class="salvar">
+                <button  type="submit" value="Salvar">Salvar</button>
+              </div>
+              <div>
+                <button type="reset" value="Limpar">Limpar</button>
+              </div>             
+            </div>   
+          </form>
+        </div>
+      </div>
+    </div>
+
+ <!-------------------------------- FIM do MODAL -------------------------------------------------------------------------------->
+  
+
+</body>
