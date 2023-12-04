@@ -35,7 +35,6 @@ export class LoginComponent {
     (response: any) => {
       alert("Usuario salvo com sucesso.")
       formulario.reset();
-      this.get();
     },
     (error: any) => {
       alert("Erro ao salvar cliente. " + JSON.stringify(error))
@@ -44,13 +43,11 @@ export class LoginComponent {
 }
 
   // POST
- public savesaveLogin(formulario: NgForm) {  
-  this.service.save(formulario.value, formulario.value.id).subscribe(
+ public saveLogin(formulario: NgForm) {  
+  this.service.saveLogin(formulario.value, formulario.value.id).subscribe(
     (response: any) => {
-      this.abrirUsuario()
-      // alert("Usuario salvo com sucesso.")
-      // formulario.reset();
-      // this.get();
+      alert("Login realizado com sucesso!")
+      formulario.reset();
     },
     (error: any) => {
       alert("Erro ao salvar cliente. " + JSON.stringify(error))
@@ -58,13 +55,6 @@ export class LoginComponent {
   )
 }
 
-  // Chamar o Component
-  abrirUsuario() {
-    const modelDiv = document.getElementById('ClienteComponent');
-    if(modelDiv != null) {
-        modelDiv.style.display = 'ClienteComponent'; 
-    }
-  }
 
   // Chamar o MODAL
   abrirModal() {
