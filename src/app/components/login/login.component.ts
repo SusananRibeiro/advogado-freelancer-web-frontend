@@ -2,6 +2,7 @@ import { Component, inject, ViewChild, ElementRef  } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Usuario } from 'src/app/models/Usuario';
 import { LoginService } from 'src/app/services/login/login.service';
+import { Router } from '@angular/router'; // Importe o Router do Angular
 
 @Component({
   selector: 'app-login',
@@ -30,19 +31,6 @@ export class LoginComponent {
   }
 
   // POST
- public save(formulario: NgForm) {  
-  this.service.save(formulario.value, formulario.value.id).subscribe(
-    (response: any) => {
-      alert("Usuario salvo com sucesso.")
-      formulario.reset();
-    },
-    (error: any) => {
-      alert("Erro ao salvar cliente. " + JSON.stringify(error))
-    }
-  )
-}
-
-  // POST
  public saveLogin(formulario: NgForm) {  
   this.service.saveLogin(formulario.value, formulario.value.id).subscribe(
     (response: any) => {
@@ -54,7 +42,6 @@ export class LoginComponent {
     }
   )
 }
-
 
   // Chamar o MODAL
   abrirModal() {
