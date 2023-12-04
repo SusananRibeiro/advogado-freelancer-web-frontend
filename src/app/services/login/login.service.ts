@@ -17,13 +17,9 @@ export class LoginService {
   }
 
   // Método POST (CREATE)
-  public save(usuario: Usuario, id: number = 0): Observable<Usuario> {
-    return this.http.post<Usuario>(`${enviroment.URL_API}/usuarios/crie`, usuario);
+  public saveLogin(usuario: Usuario, id: number = 0): Observable<Usuario> {
+    return this.http.post<Usuario>(`${enviroment.URL_API}/login/usuarios/login`, usuario);
   } 
 
-  // Método POST (CREATE)
-  public saveLogin(usuario: Usuario, id: number = 0): Observable<Usuario> {
-    return this.http.post<Usuario>(`${enviroment.URL_API}/login/login`, usuario);
-  } 
 
 }
