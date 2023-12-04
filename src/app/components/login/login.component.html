@@ -1,6 +1,6 @@
 <body> 
     <div class="login-container">
-        <form class="login-form" #formulario="ngForm" (ngSubmit)="save(formulario)">
+        <form class="login-form" #formulario="ngForm" (ngSubmit)="saveLogin(formulario)">
             <h2>Login</h2>
             <div class="input-group">
                 <label for="email">E-mail*</label>
@@ -24,9 +24,9 @@
         </div>
         <div class="modal-body">
           <form #formulario="ngForm" (ngSubmit)="save(formulario)">
-            <div class="elemento-invisivel">
+            <div>
               <label for="id"></label>
-              <input type="text" name="id" id="id" readonly ngModel>
+              <input type="text" name="id" id="id" hidden ngModel>
             </div>
             <div class="modal-form">
               <div>
