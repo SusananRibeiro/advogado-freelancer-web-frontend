@@ -11,7 +11,7 @@ import { ProcessoComponent } from './components/processo/processo.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { AudienciaComponent } from './components/audiencia/audiencia.component';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @NgModule({
@@ -29,8 +29,7 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    HttpClientModule,
-    RouterModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
