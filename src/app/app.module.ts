@@ -10,7 +10,8 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { ProcessoComponent } from './components/processo/processo.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
-import { Router } from '@angular/router'; // Importe o Router do Angular
+import { AudienciaComponent } from './components/audiencia/audiencia.component';
+import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { Router } from '@angular/router'; // Importe o Router do Angular
     UsuarioComponent,
     ProcessoComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    AudienciaComponent,
   ],
   imports: [
     BrowserModule,
