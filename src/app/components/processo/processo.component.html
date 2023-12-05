@@ -61,8 +61,8 @@
           <td>{{processo.clienteId}}</td>
           <td>{{processo.status == 'EmAndamento' ? 'Em andamento' : 'Arquivado'}}</td>
           <td>
-            <a id="editar" routerLink="/" (click)="setEditar(processo)"><img src="assets\imagens\editar-icons.png"></a>
-            <a id="editar" routerLink="/" (click)="delete(processo.id)"><img src="assets\imagens\lixo-icons.png"></a>
+            <a id="editar" routerLink="/processos" (click)="setEditar(processo)"><img src="assets\imagens\editar-icons.png"></a>
+            <a id="editar" routerLink="/processos" (click)="delete(processo.id)"><img src="assets\imagens\lixo-icons.png"></a>
           </td>
         </tr>
       </tbody>
@@ -74,7 +74,7 @@
     <div class="container">
       <div class="modal-header">
         <h5 class="modal-title">Cadastro Processo</h5>
-        <a id="editar" routerLink="/" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></a>
+        <a id="editar" routerLink="/processos" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></a>
       </div>
       <div>
         <form #formulario="ngForm" (ngSubmit)="save(formulario)">
