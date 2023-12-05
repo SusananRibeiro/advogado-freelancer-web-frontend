@@ -2,7 +2,6 @@ import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ProcessoService } from '../../services/processo/processo.service';
 import { Processo } from '../../models/Processo';
-import { ProcessoRows } from 'src/app/models/ProcessoRows';
 
 
 @Component({
@@ -89,23 +88,13 @@ export class ProcessoComponent {
         if (confirmDelete) {
             this.service.delete(id).subscribe(
                 (response: any) => {
-                    alert('Processo excluído com sucesso');
+                    console.log(response);
+                    alert(response.error || 'Processo excluído com sucesso');
                     this.get();
                 },
-                (error: any) => {
-                    let errorMessage = "Erro desconhecido";
-    
-                    // Verifica se a resposta contém um corpo e mensagens de erro
-                    if (error.error && error.error.messages) {
-                        // Assume que pode haver várias mensagens, pega a primeira
-                        errorMessage = error.error.messages[0];
-                    }
-                    alert("Erro ao excluir processo: " + errorMessage)
-                }
             );
         }
     }
-
 
     abrirModal() {
         const modelDiv = document.getElementById('janelaModal');
