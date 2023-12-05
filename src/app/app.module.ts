@@ -11,6 +11,8 @@ import { ProcessoComponent } from './components/processo/processo.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { AudienciaComponent } from './components/audiencia/audiencia.component';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -20,14 +22,15 @@ import { AudienciaComponent } from './components/audiencia/audiencia.component';
     ProcessoComponent,
     NavbarComponent,
     LoginComponent,
-    AudienciaComponent
+    AudienciaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
