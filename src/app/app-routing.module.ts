@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'audiencias', component: AudienciaComponent},
 
   // Página padrão (opcional)
-  { path: '', redirectTo: '/agenda', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({

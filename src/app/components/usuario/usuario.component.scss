@@ -1,35 +1,37 @@
 
 /* MODAL*/
-.modal-container {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #0000004b;
-    align-items: center;
-    justify-content: center;
-    display: none;
-}
-
-.container {
-    max-width: 500px;
-    margin-top: 50px;
-    padding: 20px;
+.modal-form {
+    margin-bottom: 20px;
     background-color: #EEEAEA;
 }
 
-.modal-header button {
-    border: none;
-    background-color: #EEEAEA;
+.modal-form label {
+    margin-bottom: 20px;
+    margin-right: 5px;
 }
 
-.modal-header img {
-    width: 35px;
+.modal-form input {
+    border-radius: 5px; /* para definir o arredondamento */
+    border: 1px solid black;
+    width: 250px;
     height: 35px;
+    margin: 5px;
 }
 
-.elemento-invisivel {
-    visibility: hidden;
+#botao {
+    display: flex;
+    background-color: #EEEAEA;
+   
+    padding-left: 135px;
+}
+
+#botao button {
+    border-radius: 5px; /* para definir o arredondamento */
+    border: 1px solid #111061;
+    width: 80px;
+    height: 35px;
+    background-color: #111061;
+    color: #fff;
+    margin: 5px;
 }
 

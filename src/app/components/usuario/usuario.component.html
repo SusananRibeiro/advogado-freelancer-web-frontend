@@ -1,17 +1,29 @@
 <body>
-  <div *ngFor="let usuario of usuarios">
-    <div class="elemento-invisivel">
-      <label for="id">Código*</label>
-      <input type="text" name="id" id="id" ngModel>
-    </div>
-    <h1>Olá, {{usuario.nomeCompleto}}!</h1>
-    <h2>{{usuario.email}}</h2>
-  </div>
-  <div>
-    <button>Editar</button>
-    <button>Excluir Conta</button>
-  </div>
-
-  <!-- <form #formulario="ngForm" (ngSubmit)="save(formulario)"></form> -->
-
+    <form #formulario="ngForm" (ngSubmit)="save(formulario)">
+        <div>
+            <input type="text" name="id" id="id" readonly hidden ngModel>
+        </div>
+        <div class="modal-form">
+            <div>
+                <label for="nomeCompleto">Nome Completo* </label>
+                <input type="text" name="nomeCompleto" id="nomeCompleto" ngModel>
+            </div>
+            <div>
+                <label for="email">E-mail* </label>
+                <input type="text" name="email" id="email" ngModel> 
+            </div>
+            <div>
+                <label for="senha">Senha* </label>
+                <input type="password" name="senha" id="senha" ngModel>
+            </div>
+            <div>
+                <label for="confirmaSenha">Confirma Senha* </label>
+                <input type="password" name="confirmaSenha" id="confirmaSenha" ngModel>
+            </div>
+            <div id="botao">
+                <button  type="submit" value="Salvar">Salvar</button>
+                <button type="reset" value="Limpar">Limpar</button>            
+            </div>  
+        </div>  
+    </form> 
 </body>

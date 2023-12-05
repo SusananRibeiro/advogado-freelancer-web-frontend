@@ -13,7 +13,6 @@ import { LoginComponent } from './components/login/login.component';
 import { AudienciaComponent } from './components/audiencia/audiencia.component';
 import { Router } from '@angular/router';
 
-
 @NgModule({
   declarations: [
     AppComponent,

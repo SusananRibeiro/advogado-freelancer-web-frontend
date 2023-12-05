@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavbarService } from './services/NavbarService';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'advogado-freelancer-web-front';
+  constructor(public navbarService: NavbarService) {}
 }

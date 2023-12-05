@@ -1,7 +1,10 @@
-import { Component, inject, ViewChild, ElementRef  } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Usuario } from 'src/app/models/Usuario';
 import { LoginService } from 'src/app/services/login/login.service';
+import { Router } from '@angular/router'; 
+import { NavbarService } from 'src/app/services/NavbarService';
+
 
 @Component({
   selector: 'app-login',
@@ -10,7 +13,9 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class LoginComponent {
   private service: LoginService = inject(LoginService);
+  private router: Router = inject(Router);
   public usuarios: Usuario[] = [];
+  constructor(public navbarService: NavbarService) {}
 
   @ViewChild("formulario") formulario: NgForm | undefined;
 
@@ -29,55 +34,34 @@ export class LoginComponent {
     )
   }
 
-  // POST
- public save(formulario: NgForm) {  
-  this.service.save(formulario.value, formulario.value.id).subscribe(
-    (response: any) => {
-      alert("Usuario salvo com sucesso.")
-      formulario.reset();
-      this.get();
-    },
-    (error: any) => {
-      alert("Erro ao salvar cliente. " + JSON.stringify(error))
-    }
-  )
-}
-
-  // POST
- public savesaveLogin(formulario: NgForm) {  
-  this.service.save(formulario.value, formulario.value.id).subscribe(
-    (response: any) => {
-      this.abrirUsuario()
-      // alert("Usuario salvo com sucesso.")
-      // formulario.reset();
-      // this.get();
-    },
-    (error: any) => {
-      alert("Erro ao salvar cliente. " + JSON.stringify(error))
-    }
-  )
-}
-
-  // Chamar o Component
-  abrirUsuario() {
-    const modelDiv = document.getElementById('ClienteComponent');
-    if(modelDiv != null) {
-        modelDiv.style.display = 'ClienteComponent'; 
-    }
+  public login(formulario: NgForm): void {
+    this.service.saveLogin(formulario.value, formulario.value.id).subscribe(
+      (response: any) => {
+        this.router.navigate(['/processos']);
+        this.navbarService.mostrarNavbar = true;
+      },
+      (error: any) => {
+        if (error.status === 401) {
+          alert('Usuário ou senha inválida.');
+        } else {
+          alert('Erro ao realizar o login.');
+        }
+      }
+    );
   }
 
   // Chamar o MODAL
   abrirModal() {
     const modelDiv = document.getElementById('janelaModal');
-    if(modelDiv != null) {
-        modelDiv.style.display = 'block'; 
+    if (modelDiv != null) {
+      modelDiv.style.display = 'block';
     }
   }
 
   fecharModal() {
     const modelDiv = document.getElementById('janelaModal');
-    if(modelDiv != null) {
-        modelDiv.style.display = 'none'; 
+    if (modelDiv != null) {
+      modelDiv.style.display = 'none';
     }
   }
 

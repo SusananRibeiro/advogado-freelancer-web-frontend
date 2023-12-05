@@ -32,9 +32,27 @@ ul {
     margin-left: auto; /* Empurra o bloco de imagens para a direita */
 }
 
+.link{
+  display: inline-block;
+  border-radius: 50%;  // Torna o link redondo
+  overflow: hidden;
+  background-color: rgba(17, 16, 97, 1);
+  //border: 5px solid rgba(103, 101, 215, 1);
+}
+
 .imagem {
-    width: 30px; /* Tamanho das imagens, ajuste conforme necessário */
-    height: auto;
-    margin-left: 10px; /* Espaçamento entre as imagens, ajuste conforme necessário */  
+  width: 30px;  
+  height: auto;  
+  border-radius: 50%;  // Torna a imagem redonda
+  display: block;  // Impede que a imagem se estenda além do contêiner do link
+}  
+
+.pesquisa{
+  border-radius: 7px;
+  width: 300px;
+  height: 35px;
+  margin-left: 700px;
+  margin-right: 5px;
+  border-color: rgba(103, 101, 215, 1);
 }
 
