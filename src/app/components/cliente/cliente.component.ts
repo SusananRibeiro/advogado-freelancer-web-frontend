@@ -12,7 +12,7 @@ import { ClienteRows } from 'src/app/models/ClienteRows';
 })
 export class ClienteComponent {
   
-  public status: boolean = true; // Valor padrão como true para o checkbox
+  public status: string = 'Ativo'; // Valor padrão como true para o checkbox
   public relatorio: boolean = true;
   private service: ClienteService = inject(ClienteService);
   public clientes: Cliente[] = [];
@@ -24,76 +24,81 @@ export class ClienteComponent {
    // this.getP();
     this.get();
   }
-  // GET
+
+
   public get() {
     this.service.get().subscribe(
-      (response: any) => {
-        
-        this.clientes = response;
-      },
-      (error: any) => {
-        
-      }
-    )
-  }
-
-  // POST
-  public save(formulario: NgForm) {   
-    this.service.save(formulario.value, formulario.value.id).subscribe(
-      (response: any) => {
-        alert("Cliente salvo com sucesso.")
-        formulario.reset();
-        this.get();
-        this.fecharModal();
-      },
-      (error: any) => {
-        alert("Erro ao salvar cliente. " + JSON.stringify(error))
-      }
-    )
-  }
-
-  // PUT
-  public setEditar(cliente: Cliente) {
-    this.service.find(cliente.id).subscribe(
-      (response: Cliente) => { 
-        this.abrirModal()
-        this.formulario?.setValue(response);  
-                    
-      },
-      (error: any) => {
-        alert("Erro ao buscar cliente!");
-      }
-    );    
-  }  
-
-  // // DELETE
-  public delete(id: number) {
-    const confirmDelete = confirm('Tem certeza que deseja excluir este cliente?');
-  
-    if (confirmDelete) {
-      this.service.delete(id).subscribe(
         (response: any) => {
-          alert('Cliente excluído com sucesso');
-          this.get();
+            this.clientes = response;
         },
         (error: any) => {
-          alert('Erro ao excluir o cliente. ' + error);
-        }
-      );
-    }
-  }
+            let errorMessage = "Erro desconhecido";
 
-    // //Consulta com paginação
-  // public getP(pageNumber: number = 0, pageSize: number = 10) {
-  //   this.service.get(pageNumber, pageSize).subscribe(
-  //     (response: ClienteRows) => {
-  //       this.clientesRows = response;
-  //     },
-  //     (error: any) => {
-  //       alert("Erro ao buscar clientes!")
-  //     }
-  //   )
-  // }
+            // Verifica se a resposta contém um corpo e mensagens de erro
+            if (error.error && error.error.messages) {
+                // Assume que pode haver várias mensagens, pega a primeira
+                errorMessage = error.error.messages[0];
+            }
+            alert("Erro ao buscar cliente: " + errorMessage)
+        }
+    )
+}
+
+public save(formulario: NgForm) {
+
+    this.service.save(formulario.value, formulario.value.id).subscribe(
+        (response: any) => {
+            alert("Cliente salvo com sucesso.")
+            formulario.reset();
+            this.get();
+            this.fecharModal();
+        },
+        (error: any) => {
+            let errorMessage = "Erro desconhecido";
+
+            // Verifica se a resposta contém um corpo e mensagens de erro
+            if (error.error && error.error.messages) {
+                // Assume que pode haver várias mensagens, pega a primeira
+                errorMessage = error.error.messages[0];
+            }
+            alert("Erro ao salvar cliente: " + errorMessage)
+        }
+    )
+}
+
+public setEditar(cliente: Cliente) {        
+    this.service.find(cliente.id).subscribe(
+        (response: Cliente) => {
+            this.abrirModal()
+            this.formulario?.setValue(response);
+        },
+        (error: any) => {
+            let errorMessage = "Erro desconhecido";
+
+            // Verifica se a resposta contém um corpo e mensagens de erro
+            if (error.error && error.error.messages) {
+                // Assume que pode haver várias mensagens, pega a primeira
+                errorMessage = error.error.messages[0];
+            }
+            alert("Erro ao salvar cliente: " + errorMessage)
+        }
+    );
+}
+
+
+public delete(id: number) {
+    const confirmDelete = confirm('Tem certeza que deseja excluir este cliente?');
+
+    if (confirmDelete) {
+        this.service.delete(id).subscribe(
+            (response: any) => {
+                console.log(response);
+                alert(response.error || 'Cliente excluído com sucesso');
+                this.get();
+            },
+        );
+    }
+}
 
   // Chamar o MODAL
   abrirModal() {

@@ -23,8 +23,4 @@ export class LoginService {
     return this.http.post<Usuario>(`${enviroment.URL_API}/login/login`, usuario);
   } 
 
-  // public saveLogin(usuario: Usuario): Observable<any> {
-  //   return this.http.post<any>(`${enviroment.URL_API}/login/login`, usuario);
-  // }
-
 }
