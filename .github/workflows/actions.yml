@@ -1,0 +1,31 @@
+name: CI:CD
+
+on:
+  push:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Configuração node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.10'
+        cache: 'npm'
+    - run: npm install
+    - run: npm run build    
+
+  deploy:
+    needs: ['build'] 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        env: 
+          deploy_url: ${{secrets.RENDER_DEPLOY_HOOK_URL}}
+        run: |
+          curl "$deploy_url"  
