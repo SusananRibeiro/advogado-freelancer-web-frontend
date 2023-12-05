@@ -2,7 +2,7 @@ import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Usuario } from 'src/app/models/Usuario';
 import { LoginService } from 'src/app/services/login/login.service';
-import { Router } from '@angular/router'; // Importe o Router do Angular
+import { Router } from '@angular/router'; 
 import { NavbarService } from 'src/app/services/NavbarService';
 
 
@@ -33,19 +33,6 @@ export class LoginComponent {
       }
     )
   }
-
-  // POST
-  //  public saveLogin(formulario: NgForm) {  
-  //   this.service.saveLogin(formulario.value, formulario.value.id).subscribe(
-  //     (response: any) => {
-  //       alert("Login realizado com sucesso!")
-  //       formulario.reset();
-  //     },
-  //     (error: any) => {
-  //       alert("Erro ao salvar cliente. " + JSON.stringify(error))
-  //     }
-  //   )
-  // }
 
   public login(formulario: NgForm): void {
     this.service.saveLogin(formulario.value, formulario.value.id).subscribe(

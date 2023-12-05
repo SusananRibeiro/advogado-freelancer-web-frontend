@@ -42,5 +42,3 @@ export class ClienteService {
     }
 
 }
-
-// É nessa classe que fazemos o CRUD, ou seja, o GET, POST, PUT e DELETE do protocolo HTTP
