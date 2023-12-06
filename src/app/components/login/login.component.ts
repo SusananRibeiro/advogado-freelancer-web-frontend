@@ -37,8 +37,7 @@ export class LoginComponent {
   public login(formulario: NgForm): void {
     this.service.saveLogin(formulario.value, formulario.value.id).subscribe(
       (response: any) => {
-        this.router.navigate(['/processos']);
-        this.navbarService.mostrarNavbar = true;
+        this.router.navigate(['/audiencias']);
       },
       (error: any) => {
         if (error.status === 401) {

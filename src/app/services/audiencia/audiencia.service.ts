@@ -22,7 +22,7 @@ export class AudienciaService {
     if(id>0){
       return this.http.put<Audiencia>(`${enviroment.URL_API}/audiencias/atualize/${id}`,audiencia);
     }
-      return this.http.post<Audiencia>(`${enviroment.URL_API}//audiencias/crie`,audiencia);
+      return this.http.post<Audiencia>(`${enviroment.URL_API}/audiencias/crie`,audiencia);
   }
 
   //Método GET por ID
@@ -35,12 +35,6 @@ export class AudienciaService {
     return this.http.delete<void>(`${enviroment.URL_API}/audiencias/delete${id}`);
   }
 
-// ----------------- Paginação
-
-  //Método GET
-  public getP(pageNumber:number,pageSize: number):Observable<AudienciaRows> {
-    return this.http.get<AudienciaRows>(`${enviroment.URL_API}/audiencias/carregue/page?page=${pageNumber}&size=${pageSize}`);
-  }
 }
 
 
