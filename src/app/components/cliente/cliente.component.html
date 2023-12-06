@@ -1,35 +1,11 @@
-<!-- <app-navbar></app-navbar> -->
+<app-navbar></app-navbar>
 <body>
   <h1>Clientes</h1>
-
   <div class="btnRelatorio">
     <div class="btnCadastro">
-          <!-- Button trigger modal -->
       <button type="button" (click)="abrirModal()">Cadastrar Cliente</button> 
     </div>  
-    <div class="relatorio">
-      <div class="relatorioLabel">
-        <img  src="assets\imagens\agenda-icons.png">
-        <label for="relatorio">Relatório</label>
-      </div>
-      <div class="relatorioCampo">        
-        <select name="relatorio" id="relatorio" ngModel>
-          <option value="todos">Todos</option>
-          <option value="cliente">Cliente</option>
-        </select>
-      </div>
-    </div>
-    <div class="ativoInativo">
-      <div>
-        <input type="checkbox" id="chkAtivo" nome="chkAtivo" checked [(ngModel)]="relatorio">
-        <label for="scales">Ativo</label> 
-      </div>
-      <div class="inativo">
-        <input type="checkbox" id="chkInativo" nome="chkInativo">
-        <label for="chkInativo">Inativo</label><br> 
-      </div>
-    </div>
-  </div>   
+    </div> 
 <div  class="tabela-com-scroll">
   <table>
     <thead>
@@ -46,7 +22,6 @@
       </tr>
     </thead>
     <tbody>
-    <!-- <tr *ngFor="let cliente of clientesRows?.rows"> -->
     <tr *ngFor="let cliente of clientes"> 
         <td>{{cliente.id}}</td>
         <td>{{cliente.nomeCompleto}}</td>
@@ -55,7 +30,7 @@
         <td>{{cliente.telefone}}</td>
         <td>{{cliente.email}}</td>
         <td>{{cliente.complemento}}</td>
-        <td class="statusRelatorio {{cliente.status ? 'Ativo' : 'Inativo'}}">{{cliente.status}}</td>
+        <td class="statusRelatorio">{{cliente.status}}</td>
         <td>      
           <a id="editar" routerLink="/clientes" (click)="setEditar(cliente)"><img src="assets\imagens\editar-icons.png"></a>    
           <a id="editar" routerLink="/clientes" (click)="delete(cliente.id)"><img src="assets\imagens\lixo-icons.png"></a>       
