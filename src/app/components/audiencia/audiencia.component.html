@@ -1,0 +1,136 @@
+<app-navbar></app-navbar>
+<body>
+    <h1>Agenda</h1>
+    <div class="btnRelatorio">
+        <div class="btnCadastro">
+              <!-- Button trigger modal -->
+          <button type="button" (click)="abrirModal()">Cadastrar Audiência</button> 
+        </div>  
+        <div class="relatorio">
+          <div class="relatorioLabel">
+            <img  src="assets\imagens\agenda-icons.png">
+            <label for="relatorio">Relatório</label>
+          </div>
+          <div class="relatorioCampo">        
+            <select name="relatorio" id="relatorio" ngModel>
+              <option value="todos">Todos</option>
+              <option value="audiencia">Audiência</option>
+            </select>
+          </div>
+        </div>
+        <div class="status">
+          <p>Status: </p>
+            <select name="status" id="status">
+              <option value="andamendo">Em andamento</option>
+              <option value="arquivado">Arquivado</option>
+            </select>
+        </div>
+    </div>
+    <div  class="tabela-com-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Arquivo</th>
+            <th>Processo</th>
+            <th>Cliente</th>
+            <th>Data da Audiência</th>
+            <th>Local</th>
+            <th>Hora</th>
+            <th>Status</th>             
+          </tr>
+        </thead>
+        <tbody>
+        <!-- <tr *ngFor="let cliente of clientesRows?.rows"> -->
+        <tr *ngFor="let audiencia of audiencias"> 
+            <td>{{audiencia.id}}</td>
+            <td>{{audiencia.processo_nome}}</td>
+            <td>{{audiencia.cliente_nome}}</td>
+            <td>{{audiencia.data}}</td>
+            <td>{{audiencia.local}}</td>
+            <td>{{audiencia.hora}}</td>
+            <td>{{audiencia.status}}</td>
+            <td class="statusRelatorio {{audiencia.status ? 'arquivado' : 'em_andamento'}}">{{audiencia.status}}</td>
+            <td>      
+              <a id="editar" routerLink="/" (click)="setEditar(audiencia)"><img src="assets\imagens\editar-icons.png"></a>    
+              <a id="editar" routerLink="/" (click)="delete(audiencia.id)"><img src="assets\imagens\lixo-icons.png"></a>       
+          </td>
+          </tr>
+        </tbody>
+      </table>  
+    </div>    
+
+    
+ <!-------------------------------- MODAL ------------------------------------------------------------------------------------>
+  <div class="modal-container" id="janelaModal">
+    <div class="container">
+        <div class="modal-header">
+          <h5 class="modal-title">Cadastrar Audiencia</h5>
+          <a id="editar" routerLink="/" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></a>  
+        </div>
+        <div>
+          <form #formulario="ngForm" (ngSubmit)="save(formulario)">
+              <div class="form-group">
+                <div class="formInputSelect">
+                  <label for="id">Código da Audiencia</label>               
+                  <input type="text" name="id" id="id" readonly ngModel>
+                </div>          
+                <div class="formInputSelect">
+                  <label for="data">Data*</label>
+                  <input type="date" name="data" id="data" ngModel required>
+                </div>
+                <div class="formInputSelect">
+                  <label for="hora">Hora*</label>
+                  <input type="time" name="hora" id="hora" ngModel required>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="formInputSelect">
+                  <label for="id_cliente">Código do Cliente*</label>
+                  <input type="text" name="id_cliente" id="id_cliente" ngModel required="">
+              </div>
+              <div class="formInputSelect">
+                <label for="nome_cliente">Cliente</label>
+                <input type="text" name="nome_cliente" id="nome_cliente" ngModel>
+              </div>
+              </div>
+              <div class="form-group">
+              <div class="formInputSelect">
+                <label for="id_processo">Código do Processo*</label>
+                <input type="text" name="id_processo" id="id_processo" ngModel required="">
+              </div>
+              <div class="formInputSelect">
+                <label for="nome_processo">Cliente</label>
+                <input type="text" name="nome_processo" id="nome_processo" ngModel>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="formInputSelect">
+                <label for="local">Local*</label>
+                <input type="text" name="local" id="local" ngModel required>
+              </div>
+              <div id="status">
+                <div>
+                  <label>Status*</label>
+                  <select name="status" id="status" [(ngModel)]="status">
+                    <option value="andamendo" >Em andamento</option>
+                    <option value="arquivado" >Arquivado</option>
+                  </select>
+                </div>             
+                </div>                
+              </div>                           
+            <div id="modal-botao-centro">
+              <div class="salvar">
+                <button  type="submit" value="Salvar">Salvar</button>
+              </div>
+              <div>
+                <button type="reset" value="Limpar">Limpar</button>
+              </div>             
+            </div>   
+          </form>
+        </div>
+      </div>
+    </div>
+
+ <!-------------------------------- FIM do MODAL -------------------------------------------------------------------------------->
+  
+</body>

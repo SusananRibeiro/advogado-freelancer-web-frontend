@@ -30,50 +30,26 @@ export class UsuarioComponent {
     )
   }
 
- // POST
- public save(formulario: NgForm) {  
-  this.service.save(formulario.value, formulario.value.id).subscribe(
-    (response: any) => {
-      alert("Usuario salvo com sucesso.")
-      formulario.reset();
-      this.get();
-      this.fecharModal();
-    },
-    (error: any) => {
-      alert("Erro ao salvar cliente. " + JSON.stringify(error))
-    }
-  )
-}
+  public save(formulario: NgForm) {
 
-// PUT
-public setEditar(usuario: Usuario) {
-  this.service.find(usuario.id).subscribe(
-    (response: Usuario) => { 
-      this.abrirModal()
-      this.formulario?.setValue(response);  
-                  
-    },
-    (error: any) => {
-      alert("Erro ao buscar usuario!");
-    }
-  );    
-}  
+    this.service.save(formulario.value, formulario.value.id).subscribe(
+        (response: any) => {
+            alert("Usuário salvo com sucesso.")
+            formulario.reset();
+            this.get();
+            this.fecharModal();
+        },
+        (error: any) => {
+            let errorMessage = "Erro desconhecido";
 
-// // DELETE
-public delete(id: number) {
-  const confirmDelete = confirm('Tem certeza que deseja excluir este usuario?');
-
-  if (confirmDelete) {
-    this.service.delete(id).subscribe(
-      (response: any) => {
-        alert('Usuario excluído com sucesso');
-        this.get();
-      },
-      (error: any) => {
-        alert('Erro ao excluir o usuario. ' + error);
-      }
-    );
-  }
+            // Verifica se a resposta contém um corpo e mensagens de erro
+            if (error.error && error.error.messages) {
+                // Assume que pode haver várias mensagens, pega a primeira
+                errorMessage = error.error.messages[0];
+            }
+            alert("Erro ao salvar usuário: " + errorMessage)
+        }
+    )
 }
 
   // Chamar o MODAL

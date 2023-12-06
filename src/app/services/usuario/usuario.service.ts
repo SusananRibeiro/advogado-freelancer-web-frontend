@@ -24,15 +24,4 @@ export class UsuarioService {
     return this.http.post<Usuario>(`${enviroment.URL_API}/usuarios/crie`, usuario);
   } 
 
-
-  // Método DELETE (DELETE)
-  public delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${enviroment.URL_API}/usuarios/delete/${id}`);
-  }
-
-    // Método GET por ID (READ) 
-    public find(id: number): Observable<Usuario> {
-      return this.http.get<Usuario>(`${enviroment.URL_API}/usuarios/carregue/${id}`);
-    }
-
 }
