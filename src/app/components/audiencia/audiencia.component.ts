@@ -1,6 +1,8 @@
 import { Component, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Audiencia } from 'src/app/models/Audiencia';
+import { Cliente } from 'src/app/models/Cliente';
+import { Processo } from 'src/app/models/Processo';
 import { AudienciaService } from 'src/app/services/audiencia/audiencia.service';
 
 @Component({
@@ -13,6 +15,8 @@ export class AudienciaComponent {
   public relatorio: boolean= true;
   public service: AudienciaService = inject(AudienciaService);
   public audiencias : Audiencia[]= [];
+  public clientes : Cliente[] = [];
+  public processos : Processo[] = [];
 
   @ViewChild("formulario") formulario: NgForm | undefined;
 
