@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Processo } from 'src/app/models/Processo';
 import { enviroment } from 'src/env/env.dev';
-import { ProcessoRows } from 'src/app/models/ProcessoRows';
 import { UsuarioAtual } from 'src/app/components/login/usuario.atual';
 
 
@@ -37,12 +36,6 @@ export class ProcessoService {
   // Método GET por usuarioId
   public getPorUser(): Observable<Processo> {
     return this.http.get<Processo>(`${enviroment.URL_API}/processos/carregar/usuarioId/${UsuarioAtual.getidUsuarioAtual()}`);
-  }
-
-  // ----------------- Paginação
-  // Método GET (READ)
-  public getP(pageNumber: number, pageSize: number):Observable<ProcessoRows> {
-    return this.http.get<ProcessoRows>(`${enviroment.URL_API}/processos/carregar/page?page=${pageNumber}&size=${pageSize}`);
   }
 
 }

@@ -37,10 +37,10 @@ export class AudienciaService {
     return this.http.delete<void>(`${enviroment.URL_API}/audiencias/delete${id}`);
   }
 
-    // Método GET por usuarioId
-    public getPorUser(): Observable<Audiencia> {
-      return this.http.get<Audiencia>(`${enviroment.URL_API}/audiencias/carregue/usuarioId/${UsuarioAtual.getidUsuarioAtual()}`);
-    }
+  // Método GET por usuarioId
+  public getPorUser(): Observable<Audiencia> {
+    return this.http.get<Audiencia>(`${enviroment.URL_API}/audiencias/carregue/usuarioId/${UsuarioAtual.getidUsuarioAtual()}`);
+  }
 
 }
 

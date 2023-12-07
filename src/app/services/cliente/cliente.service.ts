@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from 'src/app/models/Cliente';
 import { enviroment } from 'src/env/env.dev';
-import { ClienteRows } from '../../models/ClienteRows';
 import { UsuarioAtual } from 'src/app/components/login/usuario.atual';
 
 @Injectable({
@@ -29,25 +28,19 @@ export class ClienteService {
     return this.http.post<Cliente>(`${enviroment.URL_API}/clientes/crie`, cliente);
   }
   
-  // Método GET por ID (READ) 
-  public find(id: number): Observable<Cliente> {
-    return this.http.get<Cliente>(`${enviroment.URL_API}/clientes/carregue/${id}`);
-  }
-
-  // Método GET por usuarioId
-  public getPorUser(): Observable<Cliente> {
-    return this.http.get<Cliente>(`${enviroment.URL_API}/clientes/carregue/usuarioId/${UsuarioAtual.getidUsuarioAtual()}`);
-  }
-
   // Método DELETE (DELETE)
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(`${enviroment.URL_API}/clientes/delete/${id}`);
   }
 
-// ----------------- Paginação
-    // Método GET (READ)
-    public getP(pageNumber: number, pageSize: number):Observable<ClienteRows> {
-      return this.http.get<ClienteRows>(`${enviroment.URL_API}/clientes/carregue/page?page=${pageNumber}&size=${pageSize}`); // paginação 
-    }
+  // Método GET por ID (READ) 
+  public find(id: number): Observable<Cliente> {
+    return this.http.get<Cliente>(`${enviroment.URL_API}/clientes/carregue/${id}`);
+  }
+  
+  // Método GET por usuarioId
+  public getPorUser(): Observable<Cliente> {
+    return this.http.get<Cliente>(`${enviroment.URL_API}/clientes/carregue/usuarioId/${UsuarioAtual.getidUsuarioAtual()}`);
+  }
 
 }
