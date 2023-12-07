@@ -1,7 +1,7 @@
 export interface Cliente {
     id: number,
     nomeCompleto: string,
-    cpfOuCnpj: string,
+    cpf: string,
     dataNascimento: Date,
     rua: string,
     numero: string,
