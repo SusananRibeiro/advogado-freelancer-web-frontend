@@ -13,7 +13,6 @@ import { ClienteRows } from 'src/app/models/ClienteRows';
 export class ClienteComponent {
   
   public status: string = 'Ativo'; // Valor padrão como true para o checkbox
-  public relatorio: boolean = true;
   private service: ClienteService = inject(ClienteService);
   public clientes: Cliente[] = [];
  // public  clientesRows!: ClienteRows;
@@ -103,11 +102,25 @@ public delete(id: number) {
 
   // Chamar o MODAL
   abrirModal() {
-    const modelDiv = document.getElementById('janelaModal');
-    if(modelDiv != null) {
-       modelDiv.style.display = 'block'; 
-    }
-  }
+    this.service.getPorUser().subscribe(
+        (response: any) => {
+            this.clientes = response;
+        },
+        (error: any) => {
+            let errorMessage = "Erro desconhecido";
+
+            if (error.error && error.error.messages) {
+                errorMessage = error.error.messages[0];
+            }
+            alert("Erro ao buscar clientes: " + errorMessage)
+        }
+    )
+
+   const modelDiv = document.getElementById('janelaModal');
+   if (modelDiv != null) {
+       modelDiv.style.display = 'block';
+   }
+}
 
   fecharModal() {
     const modelDiv = document.getElementById('janelaModal');
@@ -116,5 +129,6 @@ public delete(id: number) {
     }
     
   }
+
   
 }

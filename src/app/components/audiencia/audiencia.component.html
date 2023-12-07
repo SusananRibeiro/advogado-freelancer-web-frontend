@@ -40,11 +40,10 @@
           </tr>
         </thead>
         <tbody>
-        <!-- <tr *ngFor="let cliente of clientesRows?.rows"> -->
         <tr *ngFor="let audiencia of audiencias"> 
             <td>{{audiencia.id}}</td>
-            <td>{{audiencia.processo_nome}}</td>
-            <td>{{audiencia.cliente_nome}}</td>
+            <td>{{audiencia.processo_id.acaoProcesso}}</td>
+            <td>{{audiencia.cliente_id.nomeCompleto}}</td>
             <td>{{audiencia.data}}</td>
             <td>{{audiencia.local}}</td>
             <td>{{audiencia.hora}}</td>
@@ -84,29 +83,36 @@
                 </div>
               </div>
               <div class="form-group">
+                <div class="formInputSelect" hidden>
+                  <label for="clienteId">Código do Cliente</label>
+                  <input type="text" name="clienteId" id="clienteId" ngModel>
+                </div>
                 <div class="formInputSelect">
-                  <label for="id_cliente">Código do Cliente*</label>
-                  <input type="text" name="id_cliente" id="id_cliente" ngModel required="">
-              </div>
-              <div class="formInputSelect">
-                <label for="nome_cliente">Cliente</label>
-                <input type="text" name="nome_cliente" id="nome_cliente" ngModel>
-              </div>
+                  <label for="nome_cliente">Cliente</label>
+                  <select name="cliente_id" id="cliente_id" ngModel>
+                    <option {value}="cliente_id" *ngFor="let cliente of clientes">{{cliente.nomeCompleto}}</option>
+                  </select>
+                </div>
               </div>
               <div class="form-group">
+                <div class="formInputSelect" hidden>
+                  <label for="processoId">Código do Processo</label>
+                  <input type="text" name="processoId" id="processoId" ngModel>
+                </div>
               <div class="formInputSelect">
-                <label for="id_processo">Código do Processo*</label>
-                <input type="text" name="id_processo" id="id_processo" ngModel required="">
-              </div>
-              <div class="formInputSelect">
-                <label for="nome_processo">Cliente</label>
-                <input type="text" name="nome_processo" id="nome_processo" ngModel>
+                <label for="nome_processo">Processo</label>
+                <select name="processo_id" id="processo_id" ngModel>
+                  <option {value}="processo_id" *ngFor="let processo of processos">{{processo.acaoProcesso}}</option>
+                </select>
               </div>
             </div>
             <div class="form-group">
               <div class="formInputSelect">
                 <label for="local">Local*</label>
-                <input type="text" name="local" id="local" ngModel required>
+                <select name="status" id="status" [(ngModel)]="status">
+                  <option value="andamendo" >Em andamento</option>
+                  <option value="arquivado" >Arquivado</option>
+                </select>
               </div>
               <div id="status">
                 <div>
