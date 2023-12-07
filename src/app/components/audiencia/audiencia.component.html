@@ -42,8 +42,8 @@
         <tbody>
         <tr *ngFor="let audiencia of audiencias"> 
             <td>{{audiencia.id}}</td>
-            <td>{{audiencia.processo_nome}}</td>
-            <td>{{audiencia.cliente_nome}}</td>
+            <td>{{audiencia.processo_id.acaoProcesso}}</td>
+            <td>{{audiencia.cliente_id.nomeCompleto}}</td>
             <td>{{audiencia.data}}</td>
             <td>{{audiencia.local}}</td>
             <td>{{audiencia.hora}}</td>

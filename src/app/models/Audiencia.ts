@@ -1,13 +1,13 @@
 import { Time } from "@angular/common";
+import { Cliente } from "./Cliente";
+import { Processo } from "./Processo";
 
 export interface Audiencia{
     id: number,
     data: Date,
     hora: Time,
-    cliente_id: number,
-    cliente_nome: string,
-    processo_id: string,
-    processo_nome: string,
+    cliente_id: Cliente,
+    processo_id: Processo,
     local: string,
     status: string,
 
