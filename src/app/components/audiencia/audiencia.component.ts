@@ -26,26 +26,34 @@ export class AudienciaComponent {
 
   // GET
   public get() {
-    this.service.get().subscribe(
-      (response: any) => {
-        this.audiencias = response;
-      },
-      (error: any) => {
-      }
+    this.service.getPorUser().subscribe(
+        (response: any) => {
+            this.audiencias = response;
+        },
+        (error: any) => {
+            let errorMessage = "Erro desconhecido";
+
+            // Verifica se a resposta contém um corpo e mensagens de erro
+            if (error.error && error.error.messages) {
+                // Assume que pode haver várias mensagens, pega a primeira
+                errorMessage = error.error.messages[0];
+            }
+            alert("Erro ao buscar audiência: " + errorMessage)
+        }
     )
-  }
+}
 
   // POST
   public save(formulario: NgForm) {   
     this.service.save(formulario.value, formulario.value.id).subscribe(
       (response: any) => {
-        alert("Cliente salvo com sucesso.")
+        alert("Audiência salva com sucesso.")
         formulario.reset();
         this.get();
         this.fecharModal();
       },
       (error: any) => {
-        alert("Erro ao salvar audiencia. " + JSON.stringify(error))
+        alert("Erro ao salvar audiência. " + JSON.stringify(error))
       }
     )
   }
@@ -71,11 +79,11 @@ export class AudienciaComponent {
     if (confirmDelete) {
       this.service.delete(id).subscribe(
         (response: any) => {
-          alert('Audiencia excluída com sucesso');
+          alert('Audiência excluída com sucesso');
           this.get();
         },
         (error: any) => {
-          alert('Erro ao excluir a audiencia. ' + error);
+          alert('Erro ao excluir a audiência. ' + error);
         }
       );
     }
@@ -83,11 +91,25 @@ export class AudienciaComponent {
   
   // Chamar o MODAL
   abrirModal() {
-    const modelDiv = document.getElementById('janelaModal');
-    if(modelDiv != null) {
-       modelDiv.style.display = 'block'; 
-    }
-  }
+    this.service.getPorUser().subscribe(
+        (response: any) => {
+            this.audiencias = response;
+        },
+        (error: any) => {
+            let errorMessage = "Erro desconhecido";
+
+            if (error.error && error.error.messages) {
+                errorMessage = error.error.messages[0];
+            }
+            alert("Erro ao buscar audiências: " + errorMessage)
+        }
+    )
+
+   const modelDiv = document.getElementById('janelaModal');
+   if (modelDiv != null) {
+       modelDiv.style.display = 'block';
+   }
+}
 
   fecharModal() {
     const modelDiv = document.getElementById('janelaModal');
