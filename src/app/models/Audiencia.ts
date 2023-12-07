@@ -10,6 +10,7 @@ export interface Audiencia{
     processo_id: Processo,
     local: string,
     status: string,
+    usuarioId: number,
 
     // Para a paginação
     totalPages: number,
