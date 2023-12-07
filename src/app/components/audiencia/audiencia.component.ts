@@ -14,7 +14,6 @@ import { ProcessoService } from 'src/app/services/processo/processo.service';
 })
 export class AudienciaComponent {
   public status: string = "EM_ANDAMENTO";
-  public relatorio: boolean= true;
   public service: AudienciaService = inject(AudienciaService);
   private clienteService: ClienteService = inject(ClienteService);
   private processoService: ProcessoService = inject(ProcessoService);
@@ -103,7 +102,9 @@ export class AudienciaComponent {
   abrirModal() {
     this.service.getPorUser().subscribe(
         (response: any) => {
-            this.audiencias = response;
+            this.clientes = response;
+            this.processos = response;
+
         },
         (error: any) => {
             let errorMessage = "Erro desconhecido";
@@ -126,6 +127,10 @@ export class AudienciaComponent {
     if(modelDiv != null) {
        modelDiv.style.display = 'none'; 
     }
+    this.formulario?.reset();
+    this.clienteId = null;
+    this.processoId = null;
+    this.status = "EM_ANDAMENTO"
   }
   
   onClienteSelectionChange(clienteId: number | null) {
@@ -147,7 +152,7 @@ export class AudienciaComponent {
   onProcesssoSelectionChange(processoId: number | null) {
     this.processoService.getPorUser().subscribe(
         (response: any) => {
-            this.clientes = response;
+            this.processos = response;
         },
         (error: any) => {
             let errorMessage = "Erro desconhecido";
@@ -155,11 +160,10 @@ export class AudienciaComponent {
             if (error.error && error.error.messsages) {
                 errorMessage = error.error.messages[0];
             }
-            alert("Erro ao buscar clientes: " + errorMessage);
+            alert("Erro ao buscar processo: " + errorMessage);
         }
     );
   }
-  
   
   
 }
