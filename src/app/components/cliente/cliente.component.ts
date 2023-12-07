@@ -27,7 +27,7 @@ export class ClienteComponent {
 
 
   public get() {
-    this.service.get().subscribe(
+    this.service.getPorUser().subscribe(
         (response: any) => {
             this.clientes = response;
         },
@@ -71,6 +71,7 @@ public setEditar(cliente: Cliente) {
         (response: Cliente) => {
             this.abrirModal()
             this.formulario?.setValue(response);
+            this.status = response.status;
         },
         (error: any) => {
             let errorMessage = "Erro desconhecido";
@@ -113,8 +114,7 @@ public delete(id: number) {
     if(modelDiv != null) {
        modelDiv.style.display = 'none'; 
     }
+    
   }
-
-
   
 }
