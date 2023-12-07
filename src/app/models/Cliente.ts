@@ -14,6 +14,7 @@ export interface Cliente {
     email: string,
     complemento: string,
     status: string,
+    usuarioId: number,
     // Para a paginação
     totalPages: number,
     totalElements: number,

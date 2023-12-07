@@ -1,3 +1,5 @@
+import { Cliente } from "./Cliente"
+
 export interface Processo {
     id: number,
     numeroProcesso: string,
@@ -12,6 +14,7 @@ export interface Processo {
     dataAbertura: Date,
     dataFechamento: Date,
     status: string,
+    cliente: Cliente,
     
     // Para a paginação
     totalPages: number,
