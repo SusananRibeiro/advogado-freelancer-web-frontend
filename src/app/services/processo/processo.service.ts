@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Processo } from 'src/app/models/Processo';
 import { enviroment } from 'src/env/env.dev';
 import { ProcessoRows } from 'src/app/models/ProcessoRows';
+import { UsuarioAtual } from 'src/app/components/login/usuario.atual';
 
 
 @Injectable({
@@ -18,6 +19,7 @@ export class ProcessoService {
     }
 
   public save(processo: Processo, id: number = 0): Observable<Processo> {
+    processo.usuarioId = parseInt(UsuarioAtual.getidUsuarioAtual(), 10);
     if(id > 0) {
       return this.http.put<Processo>(`${enviroment.URL_API}/processos/atualizar/${id}`, processo);
     }
@@ -32,8 +34,15 @@ export class ProcessoService {
     return this.http.delete<void>(`${enviroment.URL_API}/processos/deletar/${id}`);
   }
 
-    public getP(pageNumber: number, pageSize: number):Observable<ProcessoRows> {
-      return this.http.get<ProcessoRows>(`${enviroment.URL_API}/processos/carregar/page?page=${pageNumber}&size=${pageSize}`);
-    }
+  // Método GET por usuarioId
+  public getPorUser(): Observable<Processo> {
+    return this.http.get<Processo>(`${enviroment.URL_API}/clientes/carregue/usuarioId/${UsuarioAtual.getidUsuarioAtual()}`);
+  }
+
+  // ----------------- Paginação
+  // Método GET (READ)
+  public getP(pageNumber: number, pageSize: number):Observable<ProcessoRows> {
+    return this.http.get<ProcessoRows>(`${enviroment.URL_API}/processos/carregar/page?page=${pageNumber}&size=${pageSize}`);
+  }
 
 }

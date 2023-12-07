@@ -28,14 +28,13 @@ export class ProcessoComponent {
     }
 
     public get() {
-        
-        this.service.get().subscribe(
+        this.service.getPorUser().subscribe(
             (response: any) => {
                 this.processos = response;
             },
             (error: any) => {
                 let errorMessage = "Erro desconhecido";
-
+    
                 // Verifica se a resposta contém um corpo e mensagens de erro
                 if (error.error && error.error.messages) {
                     // Assume que pode haver várias mensagens, pega a primeira
@@ -150,5 +149,6 @@ export class ProcessoComponent {
             }
         );
     }
+
 }
 

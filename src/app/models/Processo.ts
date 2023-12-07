@@ -15,6 +15,7 @@ export interface Processo {
     dataFechamento: Date,
     status: string,
     cliente: Cliente,
+    usuarioId: number,
     
     // Para a paginação
     totalPages: number,
