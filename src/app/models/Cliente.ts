@@ -1,7 +1,7 @@
 export interface Cliente {
     id: number,
     nomeCompleto: string,
-    cpfOuCnpj: string,
+    cpf: string,
     dataNascimento: Date,
     rua: string,
     numero: string,
@@ -14,6 +14,7 @@ export interface Cliente {
     email: string,
     complemento: string,
     status: string,
+    usuarioId: number,
     // Para a paginação
     totalPages: number,
     totalElements: number,

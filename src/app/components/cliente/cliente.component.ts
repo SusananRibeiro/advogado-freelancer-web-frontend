@@ -2,7 +2,6 @@ import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ClienteService } from '../../services/cliente/cliente.service';
 import { Cliente } from '../../models/Cliente';
-import { ClienteRows } from 'src/app/models/ClienteRows';
 
 
 @Component({
@@ -12,22 +11,20 @@ import { ClienteRows } from 'src/app/models/ClienteRows';
 })
 export class ClienteComponent {
   
-  public status: string = 'Ativo'; // Valor padrão como true para o checkbox
-  public relatorio: boolean = true;
+  public status: string = 'ATIVO'; // Valor padrão 
   private service: ClienteService = inject(ClienteService);
   public clientes: Cliente[] = [];
- // public  clientesRows!: ClienteRows;
+
 
   @ViewChild("formulario") formulario: NgForm | undefined;
 
   ngOnInit(): void {
-   // this.getP();
     this.get();
   }
 
 
   public get() {
-    this.service.get().subscribe(
+    this.service.getPorUser().subscribe(
         (response: any) => {
             this.clientes = response;
         },
@@ -71,6 +68,7 @@ public setEditar(cliente: Cliente) {
         (response: Cliente) => {
             this.abrirModal()
             this.formulario?.setValue(response);
+            this.status = response.status;
         },
         (error: any) => {
             let errorMessage = "Erro desconhecido";
@@ -102,19 +100,33 @@ public delete(id: number) {
 
   // Chamar o MODAL
   abrirModal() {
-    const modelDiv = document.getElementById('janelaModal');
-    if(modelDiv != null) {
-       modelDiv.style.display = 'block'; 
-    }
-  }
+    this.service.getPorUser().subscribe(
+        (response: any) => {
+            this.clientes = response;
+        },
+        (error: any) => {
+            let errorMessage = "Erro desconhecido";
+
+            if (error.error && error.error.messages) {
+                errorMessage = error.error.messages[0];
+            }
+            alert("Erro ao buscar clientes: " + errorMessage)
+        }
+    )
+
+   const modelDiv = document.getElementById('janelaModal');
+   if (modelDiv != null) {
+       modelDiv.style.display = 'block';
+   }
+}
 
   fecharModal() {
     const modelDiv = document.getElementById('janelaModal');
     if(modelDiv != null) {
        modelDiv.style.display = 'none'; 
     }
+    
   }
-
 
   
 }

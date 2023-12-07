@@ -1,15 +1,18 @@
 import { Time } from "@angular/common";
+import { Cliente } from "./Cliente";
+import { Processo } from "./Processo";
 
 export interface Audiencia{
     id: number,
     data: Date,
     hora: Time,
-    cliente_id: number,
-    cliente_nome: string,
-    processo_id: string,
-    processo_nome: string,
+    clienteId: number,
+    cliente: Cliente,
+    processoId: number,
+    processo: Processo,
     local: string,
     status: string,
+    usuarioId: number,
 
     // Para a paginação
     totalPages: number,

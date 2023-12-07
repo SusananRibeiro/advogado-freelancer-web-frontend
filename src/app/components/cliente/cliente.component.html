@@ -1,35 +1,12 @@
-<!-- <app-navbar></app-navbar> -->
+
+<app-navbar></app-navbar>
 <body>
   <h1>Clientes</h1>
-
   <div class="btnRelatorio">
     <div class="btnCadastro">
-          <!-- Button trigger modal -->
       <button type="button" (click)="abrirModal()">Cadastrar Cliente</button> 
     </div>  
-    <div class="relatorio">
-      <div class="relatorioLabel">
-        <img  src="assets\imagens\agenda-icons.png">
-        <label for="relatorio">Relatório</label>
-      </div>
-      <div class="relatorioCampo">        
-        <select name="relatorio" id="relatorio" ngModel>
-          <option value="todos">Todos</option>
-          <option value="cliente">Cliente</option>
-        </select>
-      </div>
-    </div>
-    <div class="ativoInativo">
-      <div>
-        <input type="checkbox" id="chkAtivo" nome="chkAtivo" checked [(ngModel)]="relatorio">
-        <label for="scales">Ativo</label> 
-      </div>
-      <div class="inativo">
-        <input type="checkbox" id="chkInativo" nome="chkInativo">
-        <label for="chkInativo">Inativo</label><br> 
-      </div>
-    </div>
-  </div>   
+    </div> 
 <div  class="tabela-com-scroll">
   <table>
     <thead>
@@ -46,16 +23,15 @@
       </tr>
     </thead>
     <tbody>
-    <!-- <tr *ngFor="let cliente of clientesRows?.rows"> -->
     <tr *ngFor="let cliente of clientes"> 
         <td>{{cliente.id}}</td>
         <td>{{cliente.nomeCompleto}}</td>
-        <td>{{cliente.cpfOuCnpj}}</td>
+        <td>{{cliente.cpf}}</td>
         <td>{{cliente.rua}}, {{cliente.numero}}, {{cliente.bairro}}, {{cliente.cidade}}, {{cliente.uf}}, {{cliente.pais}}</td>
         <td>{{cliente.telefone}}</td>
         <td>{{cliente.email}}</td>
         <td>{{cliente.complemento}}</td>
-        <td class="statusRelatorio {{cliente.status ? 'Ativo' : 'Inativo'}}">{{cliente.status}}</td>
+        <td class="statusRelatorio">{{cliente.status}}</td>
         <td>      
           <a id="editar" routerLink="/clientes" (click)="setEditar(cliente)"><img src="assets\imagens\editar-icons.png"></a>    
           <a id="editar" routerLink="/clientes" (click)="delete(cliente.id)"><img src="assets\imagens\lixo-icons.png"></a>       
@@ -78,43 +54,43 @@
               <div class="form-group">
                 <div class="formInputSelect">
                   <label for="id">Código do Cliente</label>               
-                  <input type="text" name="id" id="id" readonly ngModel>
+                  <input id="idCliente" type="text" name="id" id="id" readonly ngModel>
                 </div>          
                 <div class="formInputSelect">
                   <label for="nomeCompleto">Nome Completo*</label>
-                  <input type="text" name="nomeCompleto" id="nomeCompleto" ngModel required>
+                  <input class="nomeCompleto" type="text" name="nomeCompleto" id="nomeCompleto" ngModel required>
                 </div>
                 <div class="formInputSelect">
-                  <label for="cpfOuCnpj">CPF/CNPJ*</label>
-                  <input type="text" name="cpfOuCnpj" id="cpfOuCnpj" ngModel required>
+                  <label for="cpf">CPF*</label>
+                  <input class="cpf" type="text" name="cpf" id="cpf" ngModel required>
                 </div>
               </div>
             <div class="form-group">
               <div class="formInputSelect">
                 <label for="dataNascimento">Data do Nascimento*</label>
-                <input type="date" name="dataNascimento" id="dataNascimento" ngModel required>
+                <input class="dataNascimento" type="date" name="dataNascimento" id="dataNascimento" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="rua">Rua*</label>
-                <input type="text" name="rua" id="rua" ngModel required>
+                <input class="rua" type="text" name="rua" id="rua" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="numero">Número</label>
-                <input type="text" name="numero" id="numero" ngModel>
+                <input class="numero" type="text" name="numero" id="numero" ngModel>
               </div>
             </div>
             <div class="form-group">
               <div class="formInputSelect">
                 <label for="bairro">Bairro*</label>
-                <input type="text" name="bairro" id="bairro" ngModel required>
+                <input class="bairro" type="text" name="bairro" id="bairro" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="cidade">Cidade*</label>
-                <input type="text" name="cidade" id="cidade" ngModel required>
+                <input class="cidade" type="text" name="cidade" id="cidade" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="uf">UF*</label>
-                <select name="uf" id="uf" ngModel required>
+                <select class="uf" name="uf" id="uf" ngModel required>
                   <option value="AC">AC</option>
                   <option value="AL">AL</option>
                   <option value="AP">AP</option>
@@ -148,35 +124,33 @@
             <div class="form-group">
               <div class="formInputSelect">
                 <label for="cep">CEP*</label>
-                <input type=" number" name="cep" id="cep" ngModel required>
+                <input class="cep" type="number" name="cep" id="cep" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="pais">País*</label>
-                <input type="text" name="pais" id="pais" ngModel required>
+                <input class="pais" type="text" name="pais" id="pais" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="complemento">Complemento</label>
-                <input type="text" name="complemento" id="complemento" ngModel>
+                <input class="complemento" type="text" name="complemento" id="complemento" ngModel>
               </div>
             </div>
             <div class="form-group">
               <div class="formInputSelect">  
                 <label for="telefone">Telefone*</label>
-                <input type="text" name="telefone" id="telefone" ngModel required> <!-- "required" para dizer que o campo é obrigatorio-->
+                <input class="telefone" type="text" name="telefone" id="telefone" ngModel required> <!-- "required" para dizer que o campo é obrigatorio-->
               </div>
               <div class="formInputSelect">
                 <label for="email">E-mail</label>
-                <input type="text" name="email" id="email" ngModel> 
+                <input class="email" type="text" name="email" id="email" ngModel> 
               </div>
-
               <div>
                 <label>Status* </label>
                 <div class="status-cadastro">
                   <label for="ativo">
                     <input type="radio" id="ativo" name="status" [(ngModel)]="status" value="ATIVO">
                     Ativo
-                  </label>
-  
+                  </label>  
                   <label for="inativo">
                     <input type="radio" id="inativo" name="status" [(ngModel)]="status" value="INATIVO">
                     Inativo

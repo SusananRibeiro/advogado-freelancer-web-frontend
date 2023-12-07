@@ -4,6 +4,7 @@ import { Usuario } from 'src/app/models/Usuario';
 import { LoginService } from 'src/app/services/login/login.service';
 import { Router } from '@angular/router'; 
 import { NavbarService } from 'src/app/services/NavbarService';
+import { UsuarioAtual } from 'src/app/components/login/usuario.atual';
 
 
 @Component({
@@ -37,8 +38,8 @@ export class LoginComponent {
   public login(formulario: NgForm): void {
     this.service.saveLogin(formulario.value, formulario.value.id).subscribe(
       (response: any) => {
-        this.router.navigate(['/processos']);
-        this.navbarService.mostrarNavbar = true;
+        UsuarioAtual.setIdUsuarioAtual(response);
+        this.router.navigate(['/audiencias']);
       },
       (error: any) => {
         if (error.status === 401) {
