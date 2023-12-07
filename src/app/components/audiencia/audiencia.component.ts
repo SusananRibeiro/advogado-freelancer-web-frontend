@@ -27,10 +27,6 @@ export class AudienciaComponent {
 
   ngOnInit(): void {
     this.get();
-  
-    console.log(this.processos);
-    console.log(this.clientes)
-  
   }
 
   // GET
@@ -72,7 +68,10 @@ export class AudienciaComponent {
     this.service.find(audiencia.id).subscribe(
       (response: Audiencia) => { 
         this.abrirModal()
-        this.formulario?.setValue(response);  
+        this.formulario?.setValue(response);
+        this.status = response.status;
+        this.clienteId = response.clienteId;
+        this.processoId = response.processoId;
                     
       },
       (error: any) => {

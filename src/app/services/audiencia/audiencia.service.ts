@@ -29,12 +29,12 @@ export class AudienciaService {
 
   //Método GET por ID
   public find(id:number): Observable<Audiencia>{
-    return this.http.get<Audiencia>(`${enviroment.URL_API}/audiencias/carregue${id}`);
+    return this.http.get<Audiencia>(`${enviroment.URL_API}/audiencias/carregue/${id}`);
   }
 
   //Método DELETE
   public delete(id:number):  Observable<void>{
-    return this.http.delete<void>(`${enviroment.URL_API}/audiencias/delete${id}`);
+    return this.http.delete<void>(`${enviroment.URL_API}/audiencias/delete/${id}`);
   }
 
   // Método GET por usuarioId
