@@ -2,7 +2,6 @@ import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ClienteService } from '../../services/cliente/cliente.service';
 import { Cliente } from '../../models/Cliente';
-import { ClienteRows } from 'src/app/models/ClienteRows';
 
 
 @Component({
@@ -12,15 +11,14 @@ import { ClienteRows } from 'src/app/models/ClienteRows';
 })
 export class ClienteComponent {
   
-  public status: string = 'Ativo'; // Valor padrão como true para o checkbox
+  public status: string = 'ATIVO'; // Valor padrão 
   private service: ClienteService = inject(ClienteService);
   public clientes: Cliente[] = [];
- // public  clientesRows!: ClienteRows;
+
 
   @ViewChild("formulario") formulario: NgForm | undefined;
 
   ngOnInit(): void {
-   // this.getP();
     this.get();
   }
 

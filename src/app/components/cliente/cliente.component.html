@@ -1,3 +1,4 @@
+
 <app-navbar></app-navbar>
 <body>
   <h1>Clientes</h1>
@@ -25,7 +26,7 @@
     <tr *ngFor="let cliente of clientes"> 
         <td>{{cliente.id}}</td>
         <td>{{cliente.nomeCompleto}}</td>
-        <td>{{cliente.cpfOuCnpj}}</td>
+        <td>{{cliente.cpf}}</td>
         <td>{{cliente.rua}}, {{cliente.numero}}, {{cliente.bairro}}, {{cliente.cidade}}, {{cliente.uf}}, {{cliente.pais}}</td>
         <td>{{cliente.telefone}}</td>
         <td>{{cliente.email}}</td>
@@ -53,43 +54,43 @@
               <div class="form-group">
                 <div class="formInputSelect">
                   <label for="id">Código do Cliente</label>               
-                  <input type="text" name="id" id="id" readonly ngModel>
+                  <input id="idCliente" type="text" name="id" id="id" readonly ngModel>
                 </div>          
                 <div class="formInputSelect">
                   <label for="nomeCompleto">Nome Completo*</label>
-                  <input type="text" name="nomeCompleto" id="nomeCompleto" ngModel required>
+                  <input class="nomeCompleto" type="text" name="nomeCompleto" id="nomeCompleto" ngModel required>
                 </div>
                 <div class="formInputSelect">
-                  <label for="cpfOuCnpj">CPF/CNPJ*</label>
-                  <input type="text" name="cpfOuCnpj" id="cpfOuCnpj" ngModel required>
+                  <label for="cpf">CPF*</label>
+                  <input class="cpf" type="text" name="cpf" id="cpf" ngModel required>
                 </div>
               </div>
             <div class="form-group">
               <div class="formInputSelect">
                 <label for="dataNascimento">Data do Nascimento*</label>
-                <input type="date" name="dataNascimento" id="dataNascimento" ngModel required>
+                <input class="dataNascimento" type="date" name="dataNascimento" id="dataNascimento" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="rua">Rua*</label>
-                <input type="text" name="rua" id="rua" ngModel required>
+                <input class="rua" type="text" name="rua" id="rua" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="numero">Número</label>
-                <input type="text" name="numero" id="numero" ngModel>
+                <input class="numero" type="text" name="numero" id="numero" ngModel>
               </div>
             </div>
             <div class="form-group">
               <div class="formInputSelect">
                 <label for="bairro">Bairro*</label>
-                <input type="text" name="bairro" id="bairro" ngModel required>
+                <input class="bairro" type="text" name="bairro" id="bairro" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="cidade">Cidade*</label>
-                <input type="text" name="cidade" id="cidade" ngModel required>
+                <input class="cidade" type="text" name="cidade" id="cidade" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="uf">UF*</label>
-                <select name="uf" id="uf" ngModel required>
+                <select class="uf" name="uf" id="uf" ngModel required>
                   <option value="AC">AC</option>
                   <option value="AL">AL</option>
                   <option value="AP">AP</option>
@@ -123,25 +124,25 @@
             <div class="form-group">
               <div class="formInputSelect">
                 <label for="cep">CEP*</label>
-                <input type=" number" name="cep" id="cep" ngModel required>
+                <input class="cep" type="number" name="cep" id="cep" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="pais">País*</label>
-                <input type="text" name="pais" id="pais" ngModel required>
+                <input class="pais" type="text" name="pais" id="pais" ngModel required>
               </div>
               <div class="formInputSelect">
                 <label for="complemento">Complemento</label>
-                <input type="text" name="complemento" id="complemento" ngModel>
+                <input class="complemento" type="text" name="complemento" id="complemento" ngModel>
               </div>
             </div>
             <div class="form-group">
               <div class="formInputSelect">  
                 <label for="telefone">Telefone*</label>
-                <input type="text" name="telefone" id="telefone" ngModel required> <!-- "required" para dizer que o campo é obrigatorio-->
+                <input class="telefone" type="text" name="telefone" id="telefone" ngModel required> <!-- "required" para dizer que o campo é obrigatorio-->
               </div>
               <div class="formInputSelect">
                 <label for="email">E-mail</label>
-                <input type="text" name="email" id="email" ngModel> 
+                <input class="email" type="text" name="email" id="email" ngModel> 
               </div>
               <div>
                 <label>Status* </label>
