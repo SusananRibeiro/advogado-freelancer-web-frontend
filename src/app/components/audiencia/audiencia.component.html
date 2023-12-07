@@ -22,6 +22,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let audiencia of audiencias"> 
+            <td hidden>{{audiencia.clienteId}}</td>
             <td>{{audiencia.processo.acaoProcesso}}</td>
             <td>{{audiencia.cliente.nomeCompleto}} </td>
             <td>{{audiencia.data}}</td>
@@ -43,7 +44,7 @@
     <div class="container">
         <div class="modal-header">
           <h5 class="modal-title">Cadastrar Audiencia</h5>
-          <a id="editar" routerLink="/" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></a>  
+          <a id="editar" routerLink="/audiencias" (click)="fecharModal()"><img src="assets\imagens\fechar-janela-icons.png"></a>  
         </div>
         <div>
           <form #formulario="ngForm" (ngSubmit)="save(formulario)">
@@ -66,12 +67,14 @@
                   <label for="clienteId">Código do Cliente</label>
                   <input type="text" name="clienteId" id="clienteId" ngModel>
                 </div>
+
                 <div class="formInputSelect">
-                  <label for="clienteId">Código do Cliente*</label>
-                  <select name="clienteId" id="idCliente" [(ngModel)]="clienteId" (change)="onClienteSelectionChange(clienteId)">
-                    <option *ngFor="let cliente of clientes" [value]="cliente.id"> {{cliente.nomeCompleto}}</option>
+                  <label for="clienteId">Cliente*</label>
+                  <select name="clienteId" id="idCliente" [(ngModel)]="clienteId" (click)="onClienteSelectionChange(clienteId)">
+                    <option *ngFor="let cliente of clientes" [value]="cliente.id">{{cliente.nomeCompleto}}</option>
                   </select>
                 </div>
+
               </div>
               <div class="form-group">
                 <div class="formInputSelect" hidden>
@@ -79,9 +82,9 @@
                   <input type="text" name="processoId" id="processoId" ngModel>
                 </div>
               <div class="formInputSelect">
-                <label for="nome_processo">Processo</label>
-                <select name="processo_id" id="processo_id" ngModel>
-                  <option {value}="processoId" *ngFor="let processo of processos">{{processo.acaoProcesso}}</option>
+                <label for="nome_processo">Processo*</label>
+                <select name="processoId" id="processoId" [(ngModel)]="processoId" (click)="onProcesssoSelectionChange(processoId)">
+                  <option *ngFor="let processo of processos" [value]="processo.id">{{processo.acaoProcesso}}</option>
                 </select>
               </div>
             </div>
