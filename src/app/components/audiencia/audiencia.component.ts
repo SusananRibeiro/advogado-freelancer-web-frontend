@@ -4,6 +4,8 @@ import { Audiencia } from 'src/app/models/Audiencia';
 import { Cliente } from 'src/app/models/Cliente';
 import { Processo } from 'src/app/models/Processo';
 import { AudienciaService } from 'src/app/services/audiencia/audiencia.service';
+import { ClienteService } from 'src/app/services/cliente/cliente.service';
+import { ProcessoService } from 'src/app/services/processo/processo.service';
 
 @Component({
   selector: 'app-audiencia',
@@ -11,17 +13,25 @@ import { AudienciaService } from 'src/app/services/audiencia/audiencia.service';
   styleUrls: ['./audiencia.component.scss']
 })
 export class AudienciaComponent {
-  public status: string = "em_andamento";
+  public status: string = "EM_ANDAMENTO";
   public relatorio: boolean= true;
   public service: AudienciaService = inject(AudienciaService);
+  private clienteService: ClienteService = inject(ClienteService);
+  private processoService: ProcessoService = inject(ProcessoService);
   public audiencias : Audiencia[]= [];
   public clientes : Cliente[] = [];
+  public clienteId: number | null = null;
   public processos : Processo[] = [];
+  public processoId : number | null = null;
 
   @ViewChild("formulario") formulario: NgForm | undefined;
 
   ngOnInit(): void {
     this.get();
+  
+    console.log(this.processos);
+    console.log(this.clientes)
+  
   }
 
   // GET
@@ -117,4 +127,39 @@ export class AudienciaComponent {
        modelDiv.style.display = 'none'; 
     }
   }
+  
+  onClienteSelectionChange(clienteId: number | null) {
+    this.clienteService.getPorUser().subscribe(
+        (response: any) => {
+            this.clientes = response;
+        },
+        (error: any) => {
+            let errorMessage = "Erro desconhecido";
+
+            if (error.error && error.error.messages) {
+                errorMessage = error.error.messages[0];
+            }
+            alert("Erro ao buscar clientes: " + errorMessage);
+        }
+    );
+  }
+
+  onProcesssoSelectionChange(processoId: number | null) {
+    this.processoService.getPorUser().subscribe(
+        (response: any) => {
+            this.clientes = response;
+        },
+        (error: any) => {
+            let errorMessage = "Erro desconhecido";
+
+            if (error.error && error.error.messsages) {
+                errorMessage = error.error.messages[0];
+            }
+            alert("Erro ao buscar clientes: " + errorMessage);
+        }
+    );
+  }
+  
+  
+  
 }

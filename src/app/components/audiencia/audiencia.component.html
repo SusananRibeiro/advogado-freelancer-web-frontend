@@ -11,25 +11,23 @@
       <table>
         <thead>
           <tr>
-            <th>Arquivo</th>
             <th>Processo</th>
             <th>Cliente</th>
             <th>Data da Audiência</th>
             <th>Local</th>
             <th>Hora</th>
-            <th>Status</th>             
+            <th>Status</th> 
+            <th></th>         
           </tr>
         </thead>
         <tbody>
         <tr *ngFor="let audiencia of audiencias"> 
-            <td>{{audiencia.id}}</td>
-            <td>{{audiencia.processo_id.acaoProcesso}}</td>
-            <td>{{audiencia.cliente_id.nomeCompleto}}</td>
+            <td>{{audiencia.processo.acaoProcesso}}</td>
+            <td>{{audiencia.cliente.nomeCompleto}} </td>
             <td>{{audiencia.data}}</td>
             <td>{{audiencia.local}}</td>
             <td>{{audiencia.hora}}</td>
             <td>{{audiencia.status}}</td>
-            <td class="statusRelatorio {{audiencia.status ? 'arquivado' : 'em_andamento'}}">{{audiencia.status}}</td>
             <td>      
               <a id="editar" routerLink="/" (click)="setEditar(audiencia)"><img src="assets\imagens\editar-icons.png"></a>    
               <a id="editar" routerLink="/" (click)="delete(audiencia.id)"><img src="assets\imagens\lixo-icons.png"></a>       
@@ -50,7 +48,7 @@
         <div>
           <form #formulario="ngForm" (ngSubmit)="save(formulario)">
               <div class="form-group">
-                <div class="formInputSelect">
+                <div class="formInputSelect" hidden>
                   <label for="id">Código da Audiencia</label>               
                   <input type="text" name="id" id="id" readonly ngModel>
                 </div>          
@@ -69,9 +67,9 @@
                   <input type="text" name="clienteId" id="clienteId" ngModel>
                 </div>
                 <div class="formInputSelect">
-                  <label for="nome_cliente">Cliente</label>
-                  <select name="cliente_id" id="cliente_id" ngModel>
-                    <option {value}="cliente_id" *ngFor="let cliente of clientes">{{cliente.nomeCompleto}}</option>
+                  <label for="clienteId">Código do Cliente*</label>
+                  <select name="clienteId" id="idCliente" [(ngModel)]="clienteId" (change)="onClienteSelectionChange(clienteId)">
+                    <option *ngFor="let cliente of clientes" [value]="cliente.id"> {{cliente.nomeCompleto}}</option>
                   </select>
                 </div>
               </div>
@@ -83,7 +81,7 @@
               <div class="formInputSelect">
                 <label for="nome_processo">Processo</label>
                 <select name="processo_id" id="processo_id" ngModel>
-                  <option {value}="processo_id" *ngFor="let processo of processos">{{processo.acaoProcesso}}</option>
+                  <option {value}="processoId" *ngFor="let processo of processos">{{processo.acaoProcesso}}</option>
                 </select>
               </div>
             </div>
@@ -96,8 +94,8 @@
                 <div>
                   <label>Status*</label>
                   <select name="status" id="status" [(ngModel)]="status">
-                    <option value="andamendo" >Em andamento</option>
-                    <option value="arquivado" >Arquivado</option>
+                    <option value="EM_ANDAMENTO" >Em andamento</option>
+                    <option value="ARQUIVADO" >Arquivado</option>
                   </select>
                 </div>             
                 </div>                
