@@ -36,7 +36,7 @@ export class ProcessoService {
 
   // Método GET por usuarioId
   public getPorUser(): Observable<Processo> {
-    return this.http.get<Processo>(`${enviroment.URL_API}/clientes/carregue/usuarioId/${UsuarioAtual.getidUsuarioAtual()}`);
+    return this.http.get<Processo>(`${enviroment.URL_API}/processos/carregar/usuarioId/${UsuarioAtual.getidUsuarioAtual()}`);
   }
 
   // ----------------- Paginação
